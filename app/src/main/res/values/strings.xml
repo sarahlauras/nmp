@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">mantapluarbiasa</string>
+    <string name="lb_what_we_play">What We Play</string>
+    <string name="lb_who_we_are">Who We Are</string>
+    <string name="lb_our_schedule">Our Schedule</string>
+    <string name="icon_game">Game</string>
+    <string name="icon_people">People</string>
+    <string name="icon_calender">Calender</string>
+    <string name="nama_kelompok">Mantap Luar Biasa</string>
+    <string name="nama_team">ONIQ</string>
+    <string name="description_team">ONIQ adalah tim esports yang dikenal dengan performa tangguh dan
+        konsistensi dalam berbagai turnamen kompetitif. Mengedepankan kerja sama tim, strategi
+        yang matang, dan kemampuan individu yang luar biasa, ONIQ telah mencuri perhatian
+        di kancah esports nasional maupun internasional. Dengan fokus pada game-game populer seperti
+        Mobile Legends dan PUBG Mobile, ONIQ terus mengasah keterampilan para pemainnya melalui latihan
+        intensif dan inovasi taktik. Didukung oleh manajemen yang profesional, tim ini berkomitmen untuk
+        mencapai prestasi tertinggi dan menjadi salah satu tim terkuat di dunia esports.</string>
+    <string name="location">Indonesia</string>
+    <string name="event_name">Regional Qualifier</string>
+    <string name="event_game">Valorant</string>
+    <string name="e_sport_text">E-Sport</string>
+    <string name="date">Jakarta-10 AM</string>
+</resources>
