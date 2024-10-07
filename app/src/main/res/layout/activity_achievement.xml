@@ -7,4 +7,42 @@
     android:layout_height="match_parent"
     tools:context=".Achievement">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar4"
+        android:layout_width="417dp"
+        android:layout_height="64dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="71dp"
+        android:layout_height="64dp"
+        app:icon="@drawable/baseline_menu_24"
+        app:iconSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="66dp"
+        android:layout_height="63dp"
+        app:icon="@drawable/baseline_person_24"
+        app:iconSize="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnProfile"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toEndOf="@+id/btnMenu"
+        app:layout_constraintTop_toTopOf="@+id/toolbar4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
