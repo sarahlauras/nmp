@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar4" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imgPreview"
         android:layout_width="451dp"
         android:layout_height="209dp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar4"
@@ -59,9 +59,38 @@
         tools:layout_editor_absoluteX="-20dp" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerYear"
         android:layout_width="361dp"
         android:layout_height="56dp"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="311dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPreview" />
+
+    <TextView
+        android:id="@+id/txtGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="Valorant"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerYear" />
+
+    <TextView
+        android:id="@+id/txtAchievement"
+        android:layout_width="357dp"
+        android:layout_height="261dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="407dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="year"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="283dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
