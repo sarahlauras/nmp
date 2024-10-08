@@ -13,22 +13,16 @@
         android:theme="@style/Theme.Mantapluarbiasa"
         tools:targetApi="31">
         <activity
-            android:name=".OurScheduleCard"
-            android:exported="false" />
-        <activity
-            android:name=".AchievementList"
-            android:exported="false" />
-        <activity
             android:name=".Achievement"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".OurSchedule"
-            android:exported="false" />
-        <activity
-            android:name=".ScheduleDetail"
-            android:exported="false" />
-        <activity
-            android:name=".nyoba"
             android:exported="false" />
         <activity
             android:name=".SchedulePageDetail"
@@ -39,11 +33,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
