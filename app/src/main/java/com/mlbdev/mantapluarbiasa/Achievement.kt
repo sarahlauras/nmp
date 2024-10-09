@@ -20,22 +20,21 @@ class Achievement : AppCompatActivity() {
         binding = ActivityAchievementBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Populate Spinner with years
+
         val years = mutableListOf("All") + AchievementData.achievement.map { it.year }.distinct()
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
         binding.spinnerYear.adapter = adapter
 
-        // Set default selection to "All"
+
         binding.spinnerYear.setSelection(0)
 
-        // Set listener for Spinner
+
         binding.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 filterAchievements()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Do nothing
             }
         }
     }
@@ -49,8 +48,13 @@ class Achievement : AppCompatActivity() {
                     (it.game.equals(gameName, ignoreCase = true))
         }
 
-        binding.txtAchievement.text = filteredAchievements.joinToString("\n") { it.achievement }
+        val formattedAchievements = filteredAchievements
+            .sortedBy { it.year }
+            .mapIndexed { index, achievement ->
+                "${index + 1}. ${achievement.achievement} (${achievement.year}) - ${achievement.team}"
+            }
+            .joinToString("\n")
+
+        binding.txtAchievement.text = formattedAchievements
     }
-
-
 }
