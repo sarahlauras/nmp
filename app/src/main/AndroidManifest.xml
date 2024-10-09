@@ -14,6 +14,11 @@
         tools:targetApi="31">
         <activity
             android:name=".Achievement"
+            android:exported="true" />
+
+
+        <activity
+            android:name=".OurSchedule"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".OurSchedule"
-            android:exported="false" />
         <activity
             android:name=".SchedulePageDetail"
             android:exported="false" />
