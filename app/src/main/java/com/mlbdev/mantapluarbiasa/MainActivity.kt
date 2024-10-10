@@ -21,8 +21,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, OurSchedule::class.java)
             startActivity(intent)
         }
+
         binding.btnWhoWeAre.setOnClickListener{
             val intent = Intent(this, WhoWeAreActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnWhatWePlay.setOnClickListener{
+            val intent = Intent(this, WhatWePlay::class.java)
             startActivity(intent)
         }
     }

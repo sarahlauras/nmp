@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">mantapluarbiasa</string>
-    <string name="lb_what_we_play">What We Play</string>
-    <string name="lb_who_we_are">Who We Are</string>
-    <string name="lb_our_schedule">Our Schedule</string>
+    <string name="lb_what_we_play">WHAT WE PLAY</string>
+    <string name="lb_who_we_are">WHO WE ARE</string>
+    <string name="lb_our_schedule">OUR SCHEDULE</string>
     <string name="icon_game">Game</string>
     <string name="icon_people">People</string>
     <string name="icon_calender">Calender</string>

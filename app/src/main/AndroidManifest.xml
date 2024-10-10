@@ -13,13 +13,14 @@
         android:theme="@style/Theme.Mantapluarbiasa"
         tools:targetApi="31">
         <activity
+            android:name=".WhatWePlay"
+            android:exported="false" />
+        <activity
             android:name=".Achievement"
             android:exported="true" />
-
         <activity
             android:name=".OurSchedule"
             android:exported="true" />
-
         <activity
             android:name=".SchedulePageDetail"
             android:exported="false" />

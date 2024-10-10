@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E8E1FB"
     android:rotationX="-360"
     tools:context=".MainActivity">
 
@@ -15,17 +16,19 @@
         android:layout_marginTop="696dp"
         android:layout_marginBottom="16dp"
         android:text="MANTAP LUAR BIASA"
+        android:textColor="#FBFBFB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="93dp"
-        android:layout_height="117dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
         android:contentDescription="@string/icon_calender"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,9 +38,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="107dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
         android:contentDescription="@string/icon_game"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,19 +50,21 @@
 
     <Button
         android:id="@+id/btnWhatWePlay"
-        android:layout_width="149dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/lb_what_we_play"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="125dp"
-        android:layout_height="146dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
         android:contentDescription="@string/icon_people"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,10 +75,12 @@
 
     <Button
         android:id="@+id/btnWhoWeAre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/lb_who_we_are"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,10 +88,12 @@
 
     <Button
         android:id="@+id/btnOurSchedule"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/lb_our_schedule"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,20 +114,21 @@
         android:id="@+id/txtEsport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="@string/e_sport_text"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/btnMenu"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="71dp"
-        android:layout_height="61dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:textColor="#000000"
         app:icon="@drawable/baseline_menu_24"
         app:iconPadding="0dp"
@@ -131,8 +141,8 @@
     <Button
         android:id="@+id/btnProfile"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="72dp"
-        android:layout_height="61dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         app:icon="@drawable/baseline_person_24"
         app:iconSize="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"

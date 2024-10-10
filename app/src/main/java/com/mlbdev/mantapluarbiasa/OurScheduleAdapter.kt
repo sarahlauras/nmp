@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mlbdev.mantapluarbiasa.databinding.ScheduleCardBinding
 
-class QuestionAdapter(): RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
+class OurScheduleAdapter(): RecyclerView.Adapter<OurScheduleAdapter.QuestionViewHolder>() {
     class QuestionViewHolder(val binding:ScheduleCardBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
