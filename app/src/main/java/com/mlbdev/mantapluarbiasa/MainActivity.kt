@@ -16,8 +16,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         binding.btnOurSchedule.setOnClickListener{
-            val intent = Intent(this, SchedulePageDetail::class.java)
+            val intent = Intent(this, OurSchedule::class.java)
             startActivity(intent)
         }
         binding.btnWhoWeAre.setOnClickListener{

@@ -18,6 +18,7 @@ class OurSchedule : AppCompatActivity() {
 
         binding = ActivityOurScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 
     override fun onResume() {

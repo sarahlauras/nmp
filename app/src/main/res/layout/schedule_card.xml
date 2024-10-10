@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="413dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
@@ -18,8 +18,8 @@
 
     <Button
         android:id="@+id/btnMenu"
-        android:layout_width="64dp"
-        android:layout_height="57dp"
+        android:layout_width="73dp"
+        android:layout_height="61dp"
         android:layout_marginStart="16dp"
         app:icon="@drawable/baseline_menu_24"
         app:iconSize="25dp"
@@ -36,14 +36,14 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/btnProfile"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toEndOf="@+id/btnMenu"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnProfile"
-        android:layout_width="64dp"
-        android:layout_height="48dp"
+        android:layout_width="75dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         app:icon="@drawable/baseline_person_24"
@@ -52,8 +52,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="407dp"
-        android:layout_height="62dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
@@ -66,24 +75,29 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
                 <TextView
                     android:id="@+id/txtTgl"
-                    android:layout_width="40dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tgl"
-                    android:textSize="16sp" />
+                    android:textSize="13sp" />
 
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/txtNamaSchedule"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nama Schedule"
-                    android:textSize="16sp" />
+                    android:textSize="13sp" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -94,18 +108,20 @@
                     android:id="@+id/txtGame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Valorant" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:text="Valorant -"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/txtTeam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Team ABC" />
+                    android:text="Team ABC"
+                    android:textSize="14sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5" />
             </LinearLayout>
 
         </LinearLayout>
