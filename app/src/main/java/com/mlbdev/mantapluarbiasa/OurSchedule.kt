@@ -12,7 +12,6 @@ class OurSchedule : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-
         binding = ActivityOurScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
