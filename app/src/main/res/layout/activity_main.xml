@@ -50,7 +50,7 @@
 
     <Button
         android:id="@+id/btnWhatWePlay"
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_medium"
@@ -75,7 +75,7 @@
 
     <Button
         android:id="@+id/btnWhoWeAre"
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_medium"
@@ -88,7 +88,7 @@
 
     <Button
         android:id="@+id/btnOurSchedule"
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppins_medium"

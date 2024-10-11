@@ -5,72 +5,67 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E8E1FB"
     tools:context=".WhatWePlay">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/CardView"
-        android:layout_width="371dp"
-        android:layout_height="435dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="418dp"
+        android:layout_height="69dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="435dp"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/txtEsport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="@string/e_sport_text"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
-            <ImageView
-                android:id="@+id/imgGame"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/valorant" />
+    <Button
+        android:id="@+id/btnMenu"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:textColor="#000000"
+        app:icon="@drawable/baseline_menu_24"
+        app:iconPadding="0dp"
+        app:iconSize="40dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.10" />
+    <Button
+        android:id="@+id/btnProfile"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:icon="@drawable/baseline_person_24"
+        app:iconSize="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Title" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.1" />
-
-            <TextView
-                android:id="@+id/txtDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-
-            <Button
-                android:id="@+id/btnAchievement"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Achievement" />
-
-            <Button
-                android:id="@+id/btnTeams"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Teams" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recGames"
+        android:layout_width="409dp"
+        android:layout_height="659dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,18 +12,14 @@ import com.mlbdev.mantapluarbiasa.databinding.ActivitySchedulePageDetailBinding
 import com.mlbdev.mantapluarbiasa.databinding.ActivityWhatWePlayBinding
 
 class WhatWePlay : AppCompatActivity() {
-    private lateinit var binding: ActivityOurScheduleBinding
+    private lateinit var binding: ActivityWhatWePlayBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivityOurScheduleBinding.inflate(layoutInflater)
+        binding = ActivityWhatWePlayBinding.inflate(layoutInflater)
         setContentView(binding.root)
-    }
 
-    override fun onResume() {
-        super.onResume()
-        binding.schedulePage.layoutManager = LinearLayoutManager(this)
-        binding.schedulePage.setHasFixedSize(true)
-        binding.schedulePage.adapter = OurScheduleAdapter()
+        binding.recGames.layoutManager = LinearLayoutManager(this)
+        binding.recGames.setHasFixedSize(true)
+        binding.recGames.adapter = GameAdapter()
     }
 }
