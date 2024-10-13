@@ -1,5 +1,6 @@
 package com.mlbdev.mantapluarbiasa
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,12 @@ class OurScheduleAdapter(): RecyclerView.Adapter<OurScheduleAdapter.OurScheduleV
         holder.binding.txtNamaSchedule.text = ourScheduleData.scheduleData[position].nama_schedule
         holder.binding.txtGame.text = ourScheduleData.scheduleData[position].nama_game
         holder.binding.txtTeam.text = ourScheduleData.scheduleData[position].nama_team
+
+        holder.binding.recSchedule.setOnClickListener {
+            val intent = Intent(holder.itemView.context, SchedulePageDetail::class.java)
+            holder.itemView.context.startActivity(intent)
+
+        }
     }
 
     override fun getItemCount(): Int {

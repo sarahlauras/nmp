@@ -12,7 +12,7 @@
     tools:context=".WhatWePlay">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/CardView"
+        android:id="@+id/recSchedule"
         android:layout_width="371dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"

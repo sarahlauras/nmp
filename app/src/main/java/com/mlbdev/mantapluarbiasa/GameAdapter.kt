@@ -12,21 +12,18 @@ class GameAdapter ():RecyclerView.Adapter<GameAdapter.GameViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val binding  = WhatWePlayCardsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GameViewHolder(binding)
-
-//        binding.btnAchievement.setOnClickListener(
-//            val intent = Intent(this, Achievement::class.java)
-//            startActivity(intent)
-//        )
-//        binding.btnTeams.setOnClickListener(
-//            val intent = Intent(this, Achievement::class.java)
-//        startActivity(intent)
-//        )
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
        holder.binding.imageGame.setImageResource(GameData.gameData[position].imageId)
        holder.binding.txtTitle.text = GameData.gameData[position].title
        holder.binding.txtDesc.text = GameData.gameData[position].description
+
+        holder.binding.btnAchievement.setOnClickListener {
+            val intent = Intent(holder.itemView.context, Achievement::class.java)
+            holder.itemView.context.startActivity(intent)
+
+        }
     }
 
     override fun getItemCount(): Int {
