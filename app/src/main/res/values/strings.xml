@@ -3,6 +3,8 @@
     <string name="lb_what_we_play">WHAT WE PLAY</string>
     <string name="lb_who_we_are">WHO WE ARE</string>
     <string name="lb_our_schedule">OUR SCHEDULE</string>
+    <string name="lb_teams">Teams</string>
+    <string name="lb_schedule">Schedule</string>
     <string name="icon_game">Game</string>
     <string name="icon_people">People</string>
     <string name="icon_calender">Calender</string>
