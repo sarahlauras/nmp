@@ -16,17 +16,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        //routing
         binding.btnOurSchedule.setOnClickListener{
             val intent = Intent(this, OurSchedule::class.java)
             startActivity(intent)
         }
 
+        //routing
         binding.btnWhoWeAre.setOnClickListener{
             val intent = Intent(this, WhoWeAreActivity::class.java)
             startActivity(intent)
         }
 
+        //routing
         binding.btnWhatWePlay.setOnClickListener{
             val intent = Intent(this, WhatWePlay::class.java)
             startActivity(intent)

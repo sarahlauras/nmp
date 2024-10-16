@@ -14,6 +14,7 @@ class GameAdapter ():RecyclerView.Adapter<GameAdapter.GameViewHolder>(){
         return GameViewHolder(binding)
     }
 
+    //position adalah index
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
        holder.binding.imageGame.setImageResource(GameData.gameData[position].imageId)
        holder.binding.txtTitle.text = GameData.gameData[position].title
@@ -33,7 +34,7 @@ class GameAdapter ():RecyclerView.Adapter<GameAdapter.GameViewHolder>(){
     }
 
     override fun getItemCount(): Int {
-        return GameData.gameData.size
+        return GameData.gameData.size //mereturn jumlah gameData yang harus ditampilkan pada rec
     }
 
 }

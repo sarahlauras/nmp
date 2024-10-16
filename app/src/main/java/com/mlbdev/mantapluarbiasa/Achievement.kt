@@ -20,11 +20,11 @@ class Achievement : AppCompatActivity() {
         binding = ActivityAchievementBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val years = mutableListOf("All") + AchievementData.achievement.map { it.year }.distinct()
+        val years = mutableListOf("All") + AchievementData.achievement.map { it.year }.distinct() //map itu buat semacam list baru, distinct itu cmn nampiilin sekali data yg >1
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
         binding.spinnerYear.adapter = adapter
 
-        val gameIndex = intent.getIntExtra("GAME_INDEX", 0)
+        val gameIndex = intent.getIntExtra("GAME_INDEX",0)
 
         val gameName = GameData.gameData[gameIndex].title
         binding.txtGame.text = gameName
@@ -32,11 +32,11 @@ class Achievement : AppCompatActivity() {
         val gameImg = GameData.gameData[gameIndex].imageId
         binding.imgPreview.setImageResource(gameImg)
 
-        updateYearSpinner(gameIndex)
+        updateYearSpinner(gameIndex) //update sesuai gameIndex
 
         binding.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                filterAchievements()
+                filterAchievements() //filter sesuai tahun yang dipilih
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -69,7 +69,7 @@ class Achievement : AppCompatActivity() {
             .sortedBy { it.year }
             .mapIndexed { index, achievement ->
                 "${index + 1}. ${achievement.achievement} (${achievement.year}) - ${achievement.team}"
-            }
+            }// index+1 = nomor 1,2,3,dst. map indexed = buat list menjadi string dengan format
             .joinToString("\n")
 
         binding.txtAchievement.text = formattedAchievements
