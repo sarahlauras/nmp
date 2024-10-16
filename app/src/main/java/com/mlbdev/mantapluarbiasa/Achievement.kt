@@ -24,8 +24,6 @@ class Achievement : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
         binding.spinnerYear.adapter = adapter
 
-        //binding.spinnerYear.setSelection(0)
-
         val gameIndex = intent.getIntExtra("GAME_INDEX", 0)
 
         val gameName = GameData.gameData[gameIndex].title

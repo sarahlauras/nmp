@@ -23,9 +23,9 @@ class OurScheduleAdapter(): RecyclerView.Adapter<OurScheduleAdapter.OurScheduleV
         holder.binding.recSchedule.setOnClickListener {
             val intent = Intent(holder.itemView.context, SchedulePageDetail::class.java)
             intent.putExtra("SCHEDULE_INDEX", position)
-//            intent.putExtra("TEAM_NAME", OurScheduleData.scheduleData[position].nama_team)
-//            intent.putExtra("GAME_NAME", OurScheduleData.scheduleData[position].nama_game)
-//            intent.putExtra("SCHEDULE_NAME", OurScheduleData.scheduleData[position].nama_schedule)
+            intent.putExtra("TEAM_NAME", OurScheduleData.scheduleData[position].nama_team)
+            intent.putExtra("GAME_NAME", OurScheduleData.scheduleData[position].nama_game)
+            intent.putExtra("SCHEDULE_NAME", OurScheduleData.scheduleData[position].nama_schedule)
             holder.itemView.context.startActivity(intent)
         }
     }
