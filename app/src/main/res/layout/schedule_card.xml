@@ -71,8 +71,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Valorant -"
+                    android:text="Valorant"
                     android:textSize="14sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8" />
 
                 <TextView
                     android:id="@+id/txtTeam"
@@ -87,6 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5" />
+
             </LinearLayout>
 
         </LinearLayout>

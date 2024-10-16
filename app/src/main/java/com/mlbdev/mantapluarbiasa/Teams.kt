@@ -26,6 +26,9 @@ class Teams : AppCompatActivity() {
 
         val teamsArray = filteredTeams.toTypedArray()
 
+        val gameImg = GameData.gameData[gameIndex].imageId
+        binding.imgGame.setImageResource(gameImg)
+
         adapter = TeamAdapter(teamsArray, gameIndex)
 
         binding.teamsPage.layoutManager = LinearLayoutManager(this)

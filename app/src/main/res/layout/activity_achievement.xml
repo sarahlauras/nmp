@@ -69,10 +69,12 @@
 
     <Spinner
         android:id="@+id/spinnerYear"
-        android:layout_width="361dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="20dp"
+        style="spinner"
+        android:layout_width="348dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgPreview" />
 
@@ -90,12 +92,14 @@
 
     <TextView
         android:id="@+id/txtAchievement"
-        android:layout_width="357dp"
-        android:layout_height="261dp"
+        android:layout_width="351dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_medium"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtGame" />
 
@@ -103,10 +107,11 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/poppins_medium"
         android:text="year"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgPreview" />
 </androidx.constraintlayout.widget.ConstraintLayout>
