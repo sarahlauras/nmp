@@ -27,6 +27,9 @@ class MemberActivity : AppCompatActivity() {
 
         val membersArray = filteredMembers.toTypedArray()
 
+        val gameImg = GameData.gameData[gameIndex].imageId
+        binding.imgGame.setImageResource(gameImg)
+
         adapter = MemberAdapter(membersArray)
         binding.membersPage.layoutManager = LinearLayoutManager(this)
         binding.membersPage.setHasFixedSize(true)

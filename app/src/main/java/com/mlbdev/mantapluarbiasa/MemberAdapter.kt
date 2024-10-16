@@ -14,6 +14,8 @@ class MemberAdapter(private val memberActivity: Array<MembersBank>): RecyclerVie
 
     override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
         holder.binding.txtNamaMember.text = memberActivity[position].name
+
+        holder.binding.imgMember.setImageResource(memberActivity[position].img)
     }
 
     override fun getItemCount(): Int {
