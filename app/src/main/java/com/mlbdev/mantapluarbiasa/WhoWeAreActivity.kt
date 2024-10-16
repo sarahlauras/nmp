@@ -17,6 +17,19 @@ class WhoWeAreActivity : AppCompatActivity(){
         binding = ActivityWhoWeAreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val gameIndex = intent.getIntExtra("GAME_INDEX", 0)
+
+        val filteredTeams = TeamData.teamData.filter {
+            it.gameIndex == gameIndex
+        }
+
+        if(filteredTeams.isNotEmpty()){
+            val team = filteredTeams[0]
+
+            binding.imageTeam.setImageResource(team.img)
+            binding.txtTeamName.text = team.name
+            binding.txtDescription.text =team.description
+        }
         binding.btnLike.setOnClickListener {
             likeCount++
             updateLikeButton()
