@@ -28,10 +28,11 @@
         android:id="@+id/imageView3"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/icon_calender"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnWhoWeAre"
         app:srcCompat="@drawable/ourschedule" />
@@ -64,7 +65,7 @@
         android:id="@+id/imageView2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:contentDescription="@string/icon_people"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,13 +92,15 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/lb_our_schedule"
         android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.06" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
