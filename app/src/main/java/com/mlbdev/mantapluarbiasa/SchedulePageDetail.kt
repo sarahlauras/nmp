@@ -17,8 +17,32 @@ class SchedulePageDetail : AppCompatActivity() {
         binding = ActivitySchedulePageDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val scheduleIndex = intent.getIntExtra("SCHEDULE_INDEX", 0)
+
+        val location = ScheduleDetailData.scheduleDetails[scheduleIndex].location
+        binding.txtLocation.text = location
+
+        val time = ScheduleDetailData.scheduleDetails[scheduleIndex].time
+        binding.txtDateTime.text = time
+
+        val description = ScheduleDetailData.scheduleDetails[scheduleIndex].desctipiton
+        binding.txtDescription.text = description
+
+        val img = ScheduleDetailData.scheduleDetails[scheduleIndex].Img
+        binding.imageView5.setImageResource(img)
+
+        val teamName = intent.getStringExtra("TEAM_NAME")
+        binding.txtTeam.text = teamName
+
+        val gameName = intent.getStringExtra("GAME_NAME")
+        binding.txtGame.text = gameName
+
+        val scheduleName = intent.getStringExtra("SCHEDULE_NAME")
+        binding.txtName.text = scheduleName
+
         binding.btnNotify.setOnClickListener(){
             Toast.makeText(this,"Notification Created", Toast.LENGTH_SHORT).show()
         }
     }
+
 }

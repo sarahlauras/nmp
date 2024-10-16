@@ -2,37 +2,18 @@ package com.mlbdev.mantapluarbiasa
 
 object AchievementData {
     var achievement = arrayOf(
-        AchievementBank("Valorant", "Regional Tournament Champion", "2020", "Team A"),
-        AchievementBank("Valorant", "Best Offensive Team", "2021", "Team B"),
-        AchievementBank("Valorant", "World Championship Winner", "2022", "Team C"),
-        AchievementBank("Valorant", "First Kill Champion", "2023", "Team A"),
-        AchievementBank("Valorant", "Best Defensive Team Award", "2024", "Team A"),
+        AchievementBank(0,  "Ace of the Year - Masterful Elimination", "Team A" ,"2020"),
+        AchievementBank(0,  "Clutch King - Unstoppable Under Pressure","Team A","2021"),
+        AchievementBank(0,  "MVP Champion - Top Performer of the Tournament","Team B","2022"),
+        AchievementBank(0,  "Ace of the Year - Tactical Brilliance","Team B","2023"),
+        AchievementBank(0,  "Ace of the Year - Legendary Strike","Team B","2024"),
 
-        AchievementBank("Dota 2", "International Champion", "2022", "Team C"),
-        AchievementBank("Dota 2", "Top 4 Finisher", "2021", "Team D"),
-        AchievementBank("Dota 2", "Regional Champion", "2020", "Team E"),
+        AchievementBank(1, "International Champion", "Team C","2022"),
+        AchievementBank(1, "Top 4 Finisher", "Team D","2021"),
+        AchievementBank(1, "Regional Champion", "Team D","2020"),
 
-        AchievementBank("League of Legends", "Worlds Semifinals", "2021", "Team E"),
-        AchievementBank("League of Legends", "LCS Champion", "2022", "Team F"),
-        AchievementBank("League of Legends", "World Champion", "2023", "Team G"),
-
-        AchievementBank("Counter-Strike: Global Offensive", "Major Champion", "2023", "Team G"),
-        AchievementBank("Counter-Strike: Global Offensive", "Top 4 Finish", "2022", "Team H"),
-        AchievementBank("Counter-Strike: Global Offensive", "Regional Tournament Champion", "2021", "Team I"),
-
-
-        AchievementBank("Apex Legends", "Apex Predator", "2023", "Team H"),
-        AchievementBank("Apex Legends", "Top 10 Global Players", "2022", "Team H"),
-        AchievementBank("Apex Legends", "Season Champion", "2021", "Team J"),
-
-
-        AchievementBank("Overwatch", "OW World Cup Winner", "2020", "Team I"),
-        AchievementBank("Overwatch", "Best Healer", "2021", "Team I"),
-        AchievementBank("Overwatch", "OW Global Champion", "2022", "Team J"),
-
-
-        AchievementBank("Call of Duty", "Champions 2023", "2023", "Team J"),
-        AchievementBank("Call of Duty", "Best Sniper", "2022", "Team K"),
-        AchievementBank("Call of Duty", "Global Finals Winner", "2021", "Team L")
+        AchievementBank(2,"Worlds Semifinals","Team E", "2021"),
+        AchievementBank(2, "LCS Champion", "Team E","2022"),
+        AchievementBank(2, "World Champion", "Team F","2023"),
     )
 }

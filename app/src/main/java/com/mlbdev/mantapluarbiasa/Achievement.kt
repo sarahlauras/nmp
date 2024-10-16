@@ -20,14 +20,21 @@ class Achievement : AppCompatActivity() {
         binding = ActivityAchievementBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val years = mutableListOf("All") + AchievementData.achievement.map { it.year }.distinct()
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
         binding.spinnerYear.adapter = adapter
 
+        //binding.spinnerYear.setSelection(0)
 
-        binding.spinnerYear.setSelection(0)
+        val gameIndex = intent.getIntExtra("GAME_INDEX", 0)
 
+        val gameName = GameData.gameData[gameIndex].title
+        binding.txtGame.text = gameName
+
+        val gameImg = GameData.gameData[gameIndex].imageId
+        binding.imgPreview.setImageResource(gameImg)
+
+        updateYearSpinner(gameIndex)
 
         binding.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
@@ -39,13 +46,25 @@ class Achievement : AppCompatActivity() {
         }
     }
 
+    private fun updateYearSpinner(gameIndex:Int){
+        val years = mutableListOf("All") + AchievementData.achievement
+            .filter { it.gamesIndex == gameIndex }
+            .map { it.year }
+            .distinct()
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
+        binding.spinnerYear.adapter = adapter
+        binding.spinnerYear.setSelection(0)
+    }
+
     private fun filterAchievements() {
         val selectedYear = binding.spinnerYear.selectedItem.toString()
-        val gameName = binding.txtGame.text.toString().trim()
+
+        val gameIndex = intent.getIntExtra("GAME_INDEX",0)
 
         val filteredAchievements = AchievementData.achievement.filter {
             (selectedYear == "All" || it.year == selectedYear) &&
-                    (it.game.equals(gameName, ignoreCase = true))
+                    (it.gamesIndex== gameIndex)
         }
 
         val formattedAchievements = filteredAchievements

@@ -21,6 +21,12 @@ class GameAdapter ():RecyclerView.Adapter<GameAdapter.GameViewHolder>(){
 
         holder.binding.btnAchievement.setOnClickListener {
             val intent = Intent(holder.itemView.context, Achievement::class.java)
+            intent.putExtra("GAME_INDEX", position)
+            holder.itemView.context.startActivity(intent)
+        }
+        holder.binding.btnTeams.setOnClickListener {
+            val intent = Intent(holder.itemView.context, Teams::class.java)
+            intent.putExtra("GAME_INDEX", position)
             holder.itemView.context.startActivity(intent)
 
         }

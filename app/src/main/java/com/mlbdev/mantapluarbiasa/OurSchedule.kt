@@ -10,7 +10,6 @@ class OurSchedule : AppCompatActivity() {
     private lateinit var binding:ActivityOurScheduleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
         binding = ActivityOurScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
