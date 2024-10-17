@@ -33,7 +33,6 @@ class MemberActivity : AppCompatActivity() {
         val teamsName = TeamData.teamData[teamIndex].name
         binding.txtTeams.text = teamsName
 
-
         adapter = MemberAdapter(membersArray)
         binding.membersPage.layoutManager = LinearLayoutManager(this)
         binding.membersPage.setHasFixedSize(true)
