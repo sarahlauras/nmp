@@ -61,11 +61,12 @@
         android:id="@+id/membersPage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgGame">
+        app:layout_constraintTop_toBottomOf="@+id/txtTeams">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -73,8 +74,27 @@
         android:id="@+id/imgGame"
         android:layout_width="474dp"
         android:layout_height="272dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/valorant" />
+
+    <TextView
+        android:id="@+id/txtTeams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="337dp"
+        android:layout_marginBottom="356dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgGame" />
 </androidx.constraintlayout.widget.ConstraintLayout>
