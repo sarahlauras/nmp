@@ -30,11 +30,8 @@ class MemberActivity : AppCompatActivity() {
         val gameImg = GameData.gameData[gameIndex].imageId
         binding.imgGame.setImageResource(gameImg)
 
-        val filteredTeams = TeamData.teamData.filter {
-            it.gameIndex == gameIndex
-        }
-
-        binding.txtTeams.text = filteredTeams[teamIndex].name
+        val teamsName = TeamData.teamData[teamIndex].name
+        binding.txtTeams.text = teamsName
 
 
         adapter = MemberAdapter(membersArray)
