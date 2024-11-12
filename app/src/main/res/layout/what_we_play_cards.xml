@@ -81,10 +81,16 @@
                     android:layout_height="wrap_content"
                     android:text="Achievement" />
 
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10" />
+
                 <Button
                     android:id="@+id/btnTeams"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
                     android:text="Teams" />
             </LinearLayout>
 

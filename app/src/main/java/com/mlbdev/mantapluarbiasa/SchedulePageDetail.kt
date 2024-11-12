@@ -22,8 +22,11 @@ class SchedulePageDetail : AppCompatActivity() {
         val location = ScheduleDetailData.scheduleDetails[scheduleIndex].location
         binding.txtLocation.text = location
 
-        val time = ScheduleDetailData.scheduleDetails[scheduleIndex].time
-        binding.txtDateTime.text = time
+//        val time = ScheduleDetailData.scheduleDetails[scheduleIndex].time
+//        binding.txtDateTime.text = time
+
+        val date = OurScheduleData.scheduleData[scheduleIndex].date
+        binding.txtDateTime.text = date
 
         val description = ScheduleDetailData.scheduleDetails[scheduleIndex].desctipiton
         binding.txtDescription.text = description
