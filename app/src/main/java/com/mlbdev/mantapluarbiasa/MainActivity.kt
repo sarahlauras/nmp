@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         val fragments:ArrayList<Fragment> = ArrayList()
         OurScheduleFragmentList.newInstance(OurScheduleData.scheduleData)
         fragments.add(OurScheduleFragmentList())
+        fragments.add(WhoWeAreFragment())
+
 
         binding.viewpager.adapter = HomeAdapter(this, fragments)
     }
