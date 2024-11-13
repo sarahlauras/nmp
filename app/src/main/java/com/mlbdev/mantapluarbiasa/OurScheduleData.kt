@@ -1,7 +1,7 @@
 package com.mlbdev.mantapluarbiasa
 
 object OurScheduleData {
-    var scheduleData = arrayOf(
+    var scheduleData:ArrayList<OurScheduleBank> = arrayListOf(
         OurScheduleBank("05 SEP", "Regional Duel", "Valorant", "Team A"),
         OurScheduleBank("10 SEP", "LOL Workshop", "LOL", "Team C"),
         OurScheduleBank("07 OCT", "COD Championship", "COD", "Team A"),

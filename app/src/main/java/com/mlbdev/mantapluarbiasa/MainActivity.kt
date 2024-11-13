@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.mlbdev.mantapluarbiasa.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,24 +16,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        //routing
+//        binding.btnOurSchedule.setOnClickListener{
+//            val intent = Intent(this, OurSchedule::class.java)
+//            startActivity(intent)
+//        }
+//
+//        //routing
+//        binding.btnWhoWeAre.setOnClickListener{
+//            val intent = Intent(this, WhoWeAreActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        //routing
+//        binding.btnWhatWePlay.setOnClickListener{
+//            val intent = Intent(this, WhatWePlay::class.java)
+//            startActivity(intent)
+//        }
+        val fragments:ArrayList<Fragment> = ArrayList()
+        OurScheduleFragmentList.newInstance(OurScheduleData.scheduleData)
+        fragments.add(OurScheduleFragmentList())
 
-        //routing
-        binding.btnOurSchedule.setOnClickListener{
-            val intent = Intent(this, OurSchedule::class.java)
-            startActivity(intent)
-        }
-
-        //routing
-        binding.btnWhoWeAre.setOnClickListener{
-            val intent = Intent(this, WhoWeAreActivity::class.java)
-            startActivity(intent)
-        }
-
-        //routing
-        binding.btnWhatWePlay.setOnClickListener{
-            val intent = Intent(this, WhatWePlay::class.java)
-            startActivity(intent)
-        }
+        binding.viewpager.adapter = HomeAdapter(this, fragments)
     }
 
 }
