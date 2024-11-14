@@ -12,7 +12,6 @@ import com.mlbdev.mantapluarbiasa.databinding.FragmentWhoWeAreBinding
 
 class WhoWeAreFragment : Fragment() {
 
-
     private var likeCount = 0
     private lateinit var binding: FragmentWhoWeAreBinding
     private var gameIndex: Int=0

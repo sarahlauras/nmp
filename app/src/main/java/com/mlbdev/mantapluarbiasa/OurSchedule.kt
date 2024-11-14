@@ -1,11 +1,10 @@
 package com.mlbdev.mantapluarbiasa
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mlbdev.mantapluarbiasa.databinding.ActivityOurScheduleBinding
-import com.mlbdev.mantapluarbiasa.databinding.ActivityWhatWePlayBinding
+
 
 class OurSchedule : AppCompatActivity() {
     private lateinit var binding:ActivityOurScheduleBinding
@@ -16,7 +15,9 @@ class OurSchedule : AppCompatActivity() {
 
         binding.schedulePage.layoutManager = LinearLayoutManager(this)
         binding.schedulePage.setHasFixedSize(true)
-        binding.schedulePage.adapter = OurScheduleAdapter()
+
+        val scheduleList = OurScheduleData.scheduleData
+        binding.schedulePage.adapter = OurScheduleAdapter(scheduleList)
     }
 
 }
