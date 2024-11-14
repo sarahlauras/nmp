@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.mlbdev.mantapluarbiasa.databinding.ActivityWhoWeAreBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,24 +18,51 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class WhoWeAreFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+//    private var param1: String? = null
+//    private var param2: String? = null
+
+    private var likeCount = 0
+    private lateinit var binding: ActivityWhoWeAreBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+//        arguments?.let {
+//            param1 = it.getString(ARG_PARAM1)
+//            param2 = it.getString(ARG_PARAM2)
+//        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ):
+    View? {
+        val gameIndex = arguments?.getInt("GAME_INDEX") ?: 0
+
+        val filteredTeams = TeamData.teamData.filter {
+            it.gameIndex == gameIndex
+        }
+
+        if(filteredTeams.isNotEmpty()){
+            val team = filteredTeams[0]
+
+            binding.imageTeam.setImageResource(team.img)
+            binding.txtTeamName.text = team.name
+            binding.txtDescription.text =team.description
+        }
+        binding.btnLike.setOnClickListener {
+            likeCount++
+            updateLikeButton()
+        }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_who_we_are, container, false)
+
+
+    }
+
+    private fun updateLikeButton() {
+        binding.btnLike.text = "Like: $likeCount"
     }
 
     companion object {
@@ -48,11 +76,12 @@ class WhoWeAreFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(gameIndex: Int) =
             WhoWeAreFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+//                    putString(ARG_PARAM1, param1)
+//                    putString(ARG_PARAM2, param2)
+                    putInt("GAME_INDEX", gameIndex)
                 }
             }
     }
