@@ -41,6 +41,26 @@ class MainActivity : AppCompatActivity() {
         fragments.add(WhoWeAreFragment.newInstance(gameIndex = 0))
 
         binding.viewpager.adapter = HomeAdapter(this, fragments)
+
+        binding.viewpager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() { //diapnggil ketika geser kanan atau kiri fragmentnya
+            override fun onPageSelected(position: Int) {
+                binding.bottomNav.selectedItemId = binding.bottomNav.menu.getItem(position).itemId
+            }
+        })
+
+        //button nav
+        binding.bottomNav.setOnItemSelectedListener {
+            if(it.itemId == R.id.itemWhatWePlay) {
+                binding.viewpager.currentItem = 0 //it itu refer ke buttomnav
+            }
+            else if(it.itemId == R.id.itemSchedule) {
+                binding.viewpager.currentItem = 1
+            }
+            else if(it.itemId == R.id.itemWhoWeAre) {
+                binding.viewpager.currentItem = 2
+            }
+            true
+        }
     }
 
 }

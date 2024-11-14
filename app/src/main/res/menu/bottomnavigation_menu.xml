@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemWhatWePlay"
+        android:enabled="true"
+        android:icon="@drawable/baseline_videogame_asset_24"
+        android:title="What We Play"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemSchedule"
+        android:enabled="true"
+        android:icon="@drawable/baseline_today_24"
+        android:title="Our Schedule"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemWhoWeAre"
+        android:enabled="true"
+        android:icon="@drawable/baseline_people_24"
+        android:title="Who We Are"
+        android:visible="true"
+        app:showAsAction="always" />
+</menu>
