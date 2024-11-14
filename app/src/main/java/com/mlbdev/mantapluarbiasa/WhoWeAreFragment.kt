@@ -74,7 +74,6 @@ class WhoWeAreFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment WhoWeAreFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(gameIndex: Int) =
             WhoWeAreFragment().apply {

@@ -18,9 +18,9 @@
         <activity
             android:name=".MemberActivity"
             android:exported="false" />
-        <activity
-            android:name=".TeamMembers"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".TeamMembers"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".Teams"
             android:exported="false" />
@@ -29,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".Achievement"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".OurSchedule"
             android:exported="true" />
