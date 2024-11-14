@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Mantapluarbiasa"
         tools:targetApi="31">
         <activity
-            android:name=".IntroActivity"
+            android:name=".SignUp"
             android:exported="false" />
         <activity
             android:name=".MemberActivity"
