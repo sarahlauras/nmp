@@ -3,6 +3,7 @@ package com.mlbdev.mantapluarbiasa
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.mlbdev.mantapluarbiasa.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,8 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragments:ArrayList<Fragment> = ArrayList()
-//        OurScheduleFragmentList.newInstance(OurScheduleData.scheduleData)
-//        fragments.add(OurScheduleFragmentList())
+        fragments.add(WhatWePlayFragment())
         fragments.add(OurScheduleFragment.newInstance(OurScheduleData.scheduleData))
         fragments.add(WhoWeAreFragment.newInstance(gameIndex = 0))
 
