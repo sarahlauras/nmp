@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/mantap" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/txtUsername"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="295dp"
         android:layout_height="57dp"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.836"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
     <TextView
         android:id="@+id/textView2"
@@ -85,7 +85,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/txtPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="295dp"
         android:layout_height="48dp"
@@ -97,6 +97,6 @@
         android:text="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

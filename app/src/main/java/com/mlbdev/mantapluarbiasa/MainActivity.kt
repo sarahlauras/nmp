@@ -1,5 +1,6 @@
 package com.mlbdev.mantapluarbiasa
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -13,6 +14,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Cek session saat membuka halaman ini
+        if (!checkSession()) {
+            // Jika belum login, arahkan ke halaman login
+            startActivity(Intent(this, SignIn::class.java))
+            finish() // Tutup halaman ini agar tidak bisa kembali
+        }
+
 
         val fragments:ArrayList<Fragment> = ArrayList()
         fragments.add(WhatWePlayFragment())
@@ -40,6 +49,11 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    private fun checkSession(): Boolean {
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        return sharedPreferences.getBoolean("IsLoggedIn", false) // Ambil status login
     }
 
 }
