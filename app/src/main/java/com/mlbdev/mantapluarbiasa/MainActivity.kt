@@ -15,22 +15,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Cek session saat membuka halaman ini
         if (!checkSession()) {
-            // Jika belum login, arahkan ke halaman login
             startActivity(Intent(this, SignIn::class.java))
-            finish() // Tutup halaman ini agar tidak bisa kembali
+            finish()
         }
 
-
-        val fragments:ArrayList<Fragment> = ArrayList()
-        fragments.add(WhatWePlayFragment())
-        fragments.add(OurScheduleFragment.newInstance(OurScheduleData.scheduleData))
-        fragments.add(WhoWeAreFragment.newInstance(gameIndex = 0))
+        val fragments:ArrayList<Fragment> = arrayListOf(
+            WhatWePlayFragment(),
+            OurScheduleFragment.newInstance(OurScheduleData.scheduleData),
+            WhoWeAreFragment.newInstance(gameIndex = 0)
+        )
 
         binding.viewpager.adapter = HomeAdapter(this, fragments)
 
-        binding.viewpager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() { //diapnggil ketika geser kanan atau kiri fragmentnya
+        binding.viewpager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() { //dipanggil ketika geser kanan atau kiri fragmentnya
             override fun onPageSelected(position: Int) {
                 binding.bottomNav.selectedItemId = binding.bottomNav.menu.getItem(position).itemId
             }
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkSession(): Boolean {
         val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-        return sharedPreferences.getBoolean("IsLoggedIn", false) // Ambil status login
+        return sharedPreferences.getBoolean("IsLoggedIn", false)
     }
 
 }

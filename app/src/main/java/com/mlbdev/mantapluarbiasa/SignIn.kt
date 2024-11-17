@@ -23,8 +23,7 @@ class SignIn : AppCompatActivity() {
             val password = binding.txtPassword.text.toString()
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
-                val isSuccessful = signIn(username, password)
-                if (isSuccessful) {
+                if (signIn(username, password)) {
                     Toast.makeText(this, "Sign-In Successful!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
@@ -42,6 +41,7 @@ class SignIn : AppCompatActivity() {
         val storedUsername = sharedPreferences.getString("Username", null)
         val storedPassword = sharedPreferences.getString("Password", null)
         val hashedPassword = password.hashCode().toString()
+
 
         return if (username == storedUsername && hashedPassword == storedPassword) {
             val editor = sharedPreferences.edit()
