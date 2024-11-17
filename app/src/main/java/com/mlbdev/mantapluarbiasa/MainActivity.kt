@@ -36,22 +36,32 @@ class MainActivity : AppCompatActivity() {
 
         //button nav
         binding.bottomNav.setOnItemSelectedListener {
-            if(it.itemId == R.id.itemWhatWePlay) {
+            if (it.itemId == R.id.itemWhatWePlay) {
                 binding.viewpager.currentItem = 0 //it itu refer ke buttomnav
-            }
-            else if(it.itemId == R.id.itemSchedule) {
+            } else if (it.itemId == R.id.itemSchedule) {
                 binding.viewpager.currentItem = 1
-            }
-            else if(it.itemId == R.id.itemWhoWeAre) {
+            } else if (it.itemId == R.id.itemWhoWeAre) {
                 binding.viewpager.currentItem = 2
             }
             true
+        }
+        binding.btnSignOut.setOnClickListener(){
+            logout()
         }
     }
 
     private fun checkSession(): Boolean {
         val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
         return sharedPreferences.getBoolean("IsLoggedIn", false)
+    }
+
+    private fun logout(){
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+
+        startActivity(Intent(this, SignIn::class.java))
     }
 
 }
