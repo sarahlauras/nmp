@@ -1,3 +1,10 @@
 package com.mlbdev.mantapluarbiasa
 
-data class GameBank(var title:String, var description:String, var imageId:Int)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class GameBank(var title:String, var description:String, var imageId:Int) :
+    Parcelable{
+    override fun toString()=title
+}
