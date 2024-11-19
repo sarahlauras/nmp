@@ -1,7 +1,7 @@
 package com.mlbdev.mantapluarbiasa
 
 object GameData {
-    var gameData = arrayOf(
+    var gameData:ArrayList<GameBank> = arrayListOf(
         GameBank("Valorant", "VALORANT adalah game tembak-menembak taktis tempat kamu dan 4 rekan tim berhadapan dengan 5 Agen lain dalam baku tembak berbekal " +
                 "satu nyawa per ronde untuk jadi yang pertama memenangkan 13 ronde! Menarik, 'kan? Namun VALORANT " +
                 "bukan hanya tentang keahlian senjata. Kamu harus memanfaatkan kemampuan unik, strategi, dan kecerdikan " +

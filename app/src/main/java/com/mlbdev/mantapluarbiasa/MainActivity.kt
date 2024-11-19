@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val fragments:ArrayList<Fragment> = arrayListOf(
-            WhatWePlayFragment(),
+            WhatWePlayFragment.newInstance(GameData.gameData),
             OurScheduleFragment.newInstance(OurScheduleData.scheduleData),
             WhoWeAreFragment.newInstance(gameIndex = 0)
         )

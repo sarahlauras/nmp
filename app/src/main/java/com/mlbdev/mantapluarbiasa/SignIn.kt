@@ -34,6 +34,11 @@ class SignIn : AppCompatActivity() {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.btnSignUp.setOnClickListener{
+            val intent = Intent(this, SignUp::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun signIn(username: String, password: String): Boolean {
