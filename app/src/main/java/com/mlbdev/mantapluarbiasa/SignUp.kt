@@ -2,12 +2,17 @@ package com.mlbdev.mantapluarbiasa
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.mlbdev.mantapluarbiasa.databinding.ActivitySignUpBinding
+import org.json.JSONObject
 
 class SignUp : AppCompatActivity() {
     private lateinit var binding:ActivitySignUpBinding
@@ -27,6 +32,7 @@ class SignUp : AppCompatActivity() {
                 val intent = Intent(this, SignIn::class.java)
                 startActivity(intent)
                 finish()
+                //signUp(username, password)
             }else{
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
@@ -43,6 +49,47 @@ class SignUp : AppCompatActivity() {
         editor.apply()
 
         Toast.makeText(this, "Sign-Up Successful!", Toast.LENGTH_SHORT).show()
+//        val queue = Volley.newRequestQueue(this)
+//        val url = "http://ubaya.xyz/native_160422015/signup.php"
+
+//        val stringRequest = object : StringRequest(
+//            Request.Method.POST,
+//            url,
+//            {
+//                    response ->
+//                try{
+//                    val obj = JSONObject(response)
+//                    val status = obj.getString("status")
+//                    val message = obj.getString("message")
+//
+//                    if(status == "success"){
+//                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//                        startActivity(Intent(this, SignIn::class.java))
+//                        finish()
+//                    }
+//                    else{
+//                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//                catch(e:Exception){
+//                    e.printStackTrace()
+//                }
+//            },
+//            {
+//                    error-> Log.e("Volley Error", error.message ?: "Unknown Error")
+//                Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT).show()
+//            }
+//        )
+//        {
+//            override fun getParams():MutableMap<String, String>{
+//                val params = HashMap<String, String>()
+//                params["username"] = username
+//                params["password"] = password
+//                return params
+//            }
+//        }
+//        queue.add(stringRequest)
+//    }
     }
 
 }
