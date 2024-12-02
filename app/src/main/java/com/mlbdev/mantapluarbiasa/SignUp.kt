@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -24,72 +21,64 @@ class SignUp : AppCompatActivity() {
 
         //jika btnSubmit dipencet
         binding.btnSubmit.setOnClickListener {
+            val fname = binding.txtFirstname.text.toString()
+            val lname = binding.txtLastname.text.toString()
             val username = binding.txtUsername.text.toString()
             val password = binding.txtPassword.text.toString()
+            val repassword = binding.txtRepeatPassword.text.toString()
 
-            if(username.isNotEmpty() && password.isNotEmpty()){
-                signUp(username, password)
-                val intent = Intent(this, SignIn::class.java)
-                startActivity(intent)
-                finish()
-                //signUp(username, password)
+            if(fname.isNotEmpty() && lname.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && repassword.isNotEmpty()){
+                if(password == repassword){
+                    signUp(fname, lname, username, password, repassword)
+                }
+                else{
+                    Toast.makeText(this, "Password dan Re-password beda", Toast.LENGTH_SHORT).show()
+                }
             }else{
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    fun signUp(username: String, password: String) {
-        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        val hashedPassword = password.hashCode().toString()
+    fun signUp(fname: String, lname: String, username: String, password: String, repassword: String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://ubaya.xyz/native/160422015/signup.php"
 
-        editor.putString("Username", username)
-        editor.putString("Password", hashedPassword)
-        editor.apply()
+        val stringRequest = object : StringRequest(
+            Request.Method.POST,
+            url,
+            { response ->
+                try {
+                    val obj = JSONObject(response)
+                    val status = obj.getString("status")
+                    val message = obj.getString("message")
 
-        Toast.makeText(this, "Sign-Up Successful!", Toast.LENGTH_SHORT).show()
-//        val queue = Volley.newRequestQueue(this)
-//        val url = "http://ubaya.xyz/native_160422015/signup.php"
+                    if (status == "success") {
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, SignIn::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                Log.e("Volley Error", error.toString())
+                Toast.makeText(this, "Network Error: ${error.networkResponse?.statusCode}", Toast.LENGTH_SHORT).show()
 
-//        val stringRequest = object : StringRequest(
-//            Request.Method.POST,
-//            url,
-//            {
-//                    response ->
-//                try{
-//                    val obj = JSONObject(response)
-//                    val status = obj.getString("status")
-//                    val message = obj.getString("message")
-//
-//                    if(status == "success"){
-//                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-//                        startActivity(Intent(this, SignIn::class.java))
-//                        finish()
-//                    }
-//                    else{
-//                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//                catch(e:Exception){
-//                    e.printStackTrace()
-//                }
-//            },
-//            {
-//                    error-> Log.e("Volley Error", error.message ?: "Unknown Error")
-//                Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT).show()
-//            }
-//        )
-//        {
-//            override fun getParams():MutableMap<String, String>{
-//                val params = HashMap<String, String>()
-//                params["username"] = username
-//                params["password"] = password
-//                return params
-//            }
-//        }
-//        queue.add(stringRequest)
-//    }
+            }
+        ) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["fname"] = fname
+                params["lname"] = lname
+                params["username"] = username
+                params["password"] = password
+                return params
+            }
+        }
+        queue.add(stringRequest)
     }
-
 }
