@@ -19,6 +19,8 @@ class SignUp : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         //jika btnSubmit dipencet
         binding.btnSubmit.setOnClickListener {
             val fname = binding.txtFirstname.text.toString()
@@ -37,6 +39,10 @@ class SignUp : AppCompatActivity() {
             }else{
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.checkBox.setOnCheckedChangeListener{_, isChecked->
+            binding.btnSubmit.isEnabled = isChecked
         }
     }
 

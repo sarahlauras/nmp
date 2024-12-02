@@ -55,7 +55,7 @@ class SignIn : AppCompatActivity() {
 
                     if (status == "success") {
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, SignUp::class.java))
+                        startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

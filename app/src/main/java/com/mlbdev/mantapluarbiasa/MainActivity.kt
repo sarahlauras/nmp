@@ -15,11 +15,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (!checkSession()) {
-            startActivity(Intent(this, SignIn::class.java))
-            finish()
-        }
-
         val fragments:ArrayList<Fragment> = arrayListOf(
             WhatWePlayFragment.newInstance(GameData.gameData),
             OurScheduleFragment.newInstance(OurScheduleData.scheduleData),
@@ -45,23 +40,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        binding.btnSignOut.setOnClickListener(){
-            logout()
-        }
-    }
-
-    private fun checkSession(): Boolean {
-        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-        return sharedPreferences.getBoolean("IsLoggedIn", false)
-    }
-
-    private fun logout(){
-        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.clear()
-        editor.apply()
-
-        startActivity(Intent(this, SignIn::class.java))
     }
 
 }
