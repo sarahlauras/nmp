@@ -19,8 +19,6 @@ class SignUp : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         //jika btnSubmit dipencet
         binding.btnSubmit.setOnClickListener {
             val fname = binding.txtFirstname.text.toString()

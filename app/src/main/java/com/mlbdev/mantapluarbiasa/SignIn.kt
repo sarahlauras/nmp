@@ -55,6 +55,12 @@ class SignIn : AppCompatActivity() {
 
                     if (status == "success") {
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+                        val sharedPreferences = getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("USERNAME", username)
+                        editor.apply()
+
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
