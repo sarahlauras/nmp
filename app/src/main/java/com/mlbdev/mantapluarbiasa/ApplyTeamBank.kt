@@ -1,3 +1,3 @@
 package com.mlbdev.mantapluarbiasa
 
-data class ApplyTeamBank(var game:String, var status:String)
+data class ApplyTeamBank(var nama_game:String, var status:String)
