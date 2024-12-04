@@ -1,5 +1,6 @@
 package com.mlbdev.mantapluarbiasa
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mlbdev.mantapluarbiasa.databinding.ActivityApplyTeamBinding
@@ -19,5 +20,9 @@ class ApplyTeamActivity : AppCompatActivity() {
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 //            insets
 //        }
+        binding.fabAdd.setOnClickListener {
+            val intent = Intent(this, ApplyTeamNewActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
