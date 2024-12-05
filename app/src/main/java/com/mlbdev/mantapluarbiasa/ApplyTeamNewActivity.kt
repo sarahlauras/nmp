@@ -42,7 +42,7 @@ class ApplyTeamNewActivity : AppCompatActivity() {
                     games = Gson().fromJson(data.toString(), sType) as ArrayList<GameBank>
 
                     val names = games.getNames()
-                    val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, titles)
+                    val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, names)
                     binding.spinnerGame.adapter = adapter
                     binding.spinnerGame.setSelection(0)
                 } else {
