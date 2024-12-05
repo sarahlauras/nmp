@@ -2,6 +2,7 @@ package com.mlbdev.mantapluarbiasa
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,7 @@ class ApplyTeamNewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityApplyTeamNewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        readGame()
     }
 
     fun readGame() {
@@ -38,6 +40,11 @@ class ApplyTeamNewActivity : AppCompatActivity() {
                     val data = obj.getJSONArray("data")
                     val sType = object : TypeToken<List<GameBank>>() {}.type
                     games = Gson().fromJson(data.toString(), sType) as ArrayList<GameBank>
+
+                    val names = games.getNames()
+                    val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, titles)
+                    binding.spinnerGame.adapter = adapter
+                    binding.spinnerGame.setSelection(0)
                 } else {
                     Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show()
                 }
@@ -47,5 +54,9 @@ class ApplyTeamNewActivity : AppCompatActivity() {
             }
         ){}
         queue.add(stringRequest)
+    }
+
+    fun List<GameBank>.getNames(): List<String> {
+        return this.map { it.name }
     }
 }

@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class GameBank(var title:String, var description:String, var imageId:Int) :
+data class GameBank(var name:String, var description:String, var imageId:Int) :
     Parcelable{
-    override fun toString()=title
+    override fun toString()=name
 }

@@ -17,7 +17,7 @@ class GameAdapter (private val gameList:ArrayList<GameBank>):RecyclerView.Adapte
         val game = gameList[position]
 
        holder.binding.imageGame.setImageResource(game.imageId)
-       holder.binding.txtTitle.text = game.title
+       holder.binding.txtTitle.text = game.name
        holder.binding.txtDesc.text = game.description
 
         holder.binding.btnAchievement.setOnClickListener {
