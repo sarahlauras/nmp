@@ -22,7 +22,7 @@ class Teams : AppCompatActivity() {
 
         val gameIndex = intent.getIntExtra("GAME_INDEX", 0)
 
-        val filteredTeams = TeamData.teamData.filter { it.gameIndex == gameIndex }
+        val filteredTeams = TeamData.teamData.filter { it.idgame == gameIndex }
 
         val teamsArray = filteredTeams.toTypedArray()
 

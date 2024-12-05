@@ -20,7 +20,7 @@ class TeamAdapter(private val teams: Array<TeamBank>, private val gameIndex: Int
         holder.binding.recTeams.setOnClickListener {
             val intent = Intent(holder.itemView.context, MemberActivity::class.java)
             intent.putExtra("GAME_INDEX", gameIndex)
-            intent.putExtra("TEAM_INDEX", teams[position].index)
+            intent.putExtra("TEAM_INDEX", teams[position].idteam)
             holder.itemView.context.startActivity(intent)
         }
     }

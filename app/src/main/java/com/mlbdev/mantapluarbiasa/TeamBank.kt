@@ -1,3 +1,3 @@
 package com.mlbdev.mantapluarbiasa
 
-data class TeamBank (var index:Int, var gameIndex:Int, var name:String, var description:String, var img:Int)
+data class TeamBank (var idteam:Int, var idgame:Int, var name:String, var like:String, var image:Int, var description:String)
