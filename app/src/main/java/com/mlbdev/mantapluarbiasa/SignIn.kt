@@ -40,7 +40,7 @@ class SignIn : AppCompatActivity() {
         }
     }
 
-    private fun signIn(username: String, password: String){
+    private fun signIn(username: String, password: String) {
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/signin.php"
 
@@ -56,7 +56,8 @@ class SignIn : AppCompatActivity() {
                     if (status == "success") {
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-                        val sharedPreferences = getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
+                        val sharedPreferences =
+                            getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
                         editor.putString("USERNAME", username)
                         editor.apply()

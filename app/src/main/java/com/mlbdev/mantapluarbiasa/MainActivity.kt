@@ -45,6 +45,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnSignOut.setOnClickListener {
+            signOut()
+        }
+    }
+    private fun signOut() {
+        val sharedPreferences = getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove("USERNAME")
+        editor.apply()
+
+        val intent = Intent(this, SignIn::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }
