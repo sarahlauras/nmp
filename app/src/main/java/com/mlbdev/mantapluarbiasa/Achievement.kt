@@ -26,7 +26,7 @@ class Achievement : AppCompatActivity() {
 
         val gameIndex = intent.getIntExtra("GAME_INDEX",0)
 
-        val gameName = GameData.gameData[gameIndex].title
+        val gameName = GameData.gameData[gameIndex].name
         binding.txtGame.text = gameName
 
         val gameImg = GameData.gameData[gameIndex].imageId
