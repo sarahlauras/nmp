@@ -17,7 +17,7 @@ class ApplyTeamAdapter(private val ApplyTeamList:ArrayList<ApplyTeamBank>): Recy
 
     override fun onBindViewHolder(holder: ApplyTeamViewHolder, position: Int) {
         holder.binding.txtNamaGame.text = ApplyTeamList[position].nama_game
-        holder.binding.txtStatus.text = ApplyTeamList[position].nama_game
+        holder.binding.txtStatus.text = ApplyTeamList[position].status
     }
 
     override fun getItemCount(): Int {

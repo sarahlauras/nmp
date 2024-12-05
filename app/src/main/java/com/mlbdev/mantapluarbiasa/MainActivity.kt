@@ -40,6 +40,11 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        binding.btnApplyTeam.setOnClickListener {
+            val intent = Intent(this, ApplyTeamActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
 }
