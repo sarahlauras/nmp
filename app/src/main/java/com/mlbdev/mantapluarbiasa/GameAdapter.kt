@@ -26,6 +26,12 @@ class GameAdapter(private val gameList: ArrayList<GameBank>) : RecyclerView.Adap
 
         holder.binding.txtTitle.text = game.name
         holder.binding.txtDesc.text = game.description
+
+        holder.binding.btnAchievement.setOnClickListener {
+            val intent = Intent(holder.itemView.context, Achievement::class.java)
+            intent.putExtra("name", game.name) // Send gname as an extra
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
