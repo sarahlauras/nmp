@@ -21,7 +21,6 @@ import com.mlbdev.mantapluarbiasa.databinding.FragmentWhoWeAreBinding
 import org.json.JSONObject
 
 private val ARG_GAME = "arraygame"
-
 class WhatWePlayFragment : Fragment() {
     private var whatwe_play: ArrayList<GameBank> = ArrayList()
     private lateinit var binding: FragmentWhatWePlayBinding
@@ -29,16 +28,13 @@ class WhatWePlayFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            whatwe_play = it.getParcelableArrayList<GameBank>(ARG_GAME) as ArrayList<GameBank>
-//        }
+
         val sharedPreferences = requireContext().getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("USERNAME", null)
 
-        if(username != null){
-            readGame(username)
-        }
-        else{
+        if(username != null) {
+            readGame(username)  // Hanya butuh username untuk mengakses data
+        } else {
             Toast.makeText(context, "Username not found", Toast.LENGTH_SHORT).show()
         }
     }
@@ -49,23 +45,18 @@ class WhatWePlayFragment : Fragment() {
     ): View? {
         binding = FragmentWhatWePlayBinding.inflate(inflater, container, false)
 
-        binding.recGames.layoutManager = LinearLayoutManager(requireContext())
-        binding.recGames.setHasFixedSize(true)
-
+        // Menampilkan data pada RecyclerView
         listAdapter = GameAdapter(whatwe_play)
-        binding.recGames.adapter = listAdapter
+        binding.recGames.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = listAdapter
+        }
 
         return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(whatwe_play:ArrayList<GameBank>) = WhatWePlayFragment().apply {
-            arguments = Bundle().apply {
-                putParcelableArrayList(ARG_GAME, whatwe_play)
-            }
-        }
-    }
+    // Fungsi untuk mengambil data game dari database
     fun readGame(username : String) {
         val queue = Volley.newRequestQueue(requireContext())
         val url = "https://ubaya.xyz/native/160422015/whatweplay.php"
@@ -79,7 +70,7 @@ class WhatWePlayFragment : Fragment() {
                     val data = obj.getJSONArray("data")
                     val sType = object : TypeToken<List<GameBank>>() {}.type
                     whatwe_play = Gson().fromJson(data.toString(), sType) as ArrayList<GameBank>
-                    updateList()
+                    updateList()  // Update RecyclerView setelah data diterima
                 } else {
                     Toast.makeText(context, "No data found", Toast.LENGTH_SHORT).show()
                 }
@@ -90,18 +81,21 @@ class WhatWePlayFragment : Fragment() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["username"] = username // Tambahkan parameter username
+                params["username"] = username  // Kirimkan username hanya jika diperlukan
                 return params
             }
         }
         queue.add(stringRequest)
     }
-    fun updateList(){
-        val lm = LinearLayoutManager(activity)
-        with(binding.recGames){
-            layoutManager = lm
-            setHasFixedSize(true)
-            adapter = GameAdapter(whatwe_play)
-        }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = WhatWePlayFragment() // Tidak ada parameter
+    }
+
+    // Update RecyclerView setelah data diterima
+    private fun updateList() {
+        listAdapter = GameAdapter(whatwe_play)
+        binding.recGames.adapter = listAdapter
     }
 }

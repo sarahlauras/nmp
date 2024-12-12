@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragments:ArrayList<Fragment> = arrayListOf(
-            //WhatWePlayFragment.newInstance(),
+            WhatWePlayFragment.newInstance(),
             //OurScheduleFragment.newInstance(OurScheduleData.scheduleData),
             WhoWeAreFragment.newInstance()
         )

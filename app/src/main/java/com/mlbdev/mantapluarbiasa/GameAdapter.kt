@@ -20,21 +20,21 @@ class GameAdapter (private val gameList:ArrayList<GameBank>):RecyclerView.Adapte
        holder.binding.txtTitle.text = game.name
        holder.binding.txtDesc.text = game.description
 
-        holder.binding.btnAchievement.setOnClickListener {
-            val intent = Intent(holder.itemView.context, Achievement::class.java)
-            intent.putExtra("GAME_INDEX", position)
-            holder.itemView.context.startActivity(intent)
-        }
-        holder.binding.btnTeams.setOnClickListener {
-            val intent = Intent(holder.itemView.context, Teams::class.java)
-            intent.putExtra("GAME_INDEX", position)
-            holder.itemView.context.startActivity(intent)
-
-        }
+//        holder.binding.btnAchievement.setOnClickListener {
+//            val intent = Intent(holder.itemView.context, Achievement::class.java)
+//            intent.putExtra("GAME_INDEX", position)
+//            holder.itemView.context.startActivity(intent)
+//        }
+//        holder.binding.btnTeams.setOnClickListener {
+//            val intent = Intent(holder.itemView.context, Teams::class.java)
+//            intent.putExtra("GAME_INDEX", position)
+//            holder.itemView.context.startActivity(intent)
+//
+//        }
     }
 
     override fun getItemCount(): Int {
-        return GameData.gameData.size //mereturn jumlah gameData yang harus ditampilkan pada rec
+        return gameList.size // Menggunakan gameList yang diterima sebagai parameter di constructor
     }
 
 }
