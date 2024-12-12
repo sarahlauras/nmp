@@ -20,14 +20,14 @@ class WhoWeAreActivity : AppCompatActivity(){
         val gameIndex = intent.getIntExtra("GAME_INDEX", 0)
 
         val filteredTeams = TeamData.teamData.filter {
-            it.gameIndex == gameIndex
+            it.idgame == gameIndex
         }
 
         if(filteredTeams.isNotEmpty()){
             val team = filteredTeams[0]
 
-            binding.imageTeam.setImageResource(team.img)
-            binding.txtTeamName.text = team.name
+            binding.imageTeam.setImageResource(team.image)
+            binding.txtTeamName.text = team.nameteam
             binding.txtDescription.text =team.description
         }
         binding.btnLike.setOnClickListener {

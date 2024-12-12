@@ -15,7 +15,7 @@ class TeamAdapter(private val teams: Array<TeamBank>, private val gameIndex: Int
     }
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-        holder.binding.txtTeamName.text = teams[position].name
+        holder.binding.txtTeamName.text = teams[position].nameteam
 
         holder.binding.recTeams.setOnClickListener {
             val intent = Intent(holder.itemView.context, MemberActivity::class.java)
