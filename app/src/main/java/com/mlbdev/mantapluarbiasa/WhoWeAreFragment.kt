@@ -19,7 +19,7 @@ class WhoWeAreFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            gameIndex = it.getInt("GAME_INDEX", 0)
+            gameIndex = it.getInt("GAME_INDEX", 1)
         }
     }
 
@@ -55,7 +55,6 @@ class WhoWeAreFragment : Fragment() {
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance(gameIndex: Int) =
             WhoWeAreFragment().apply {

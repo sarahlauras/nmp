@@ -1,7 +1,7 @@
 package com.mlbdev.mantapluarbiasa
 
 object TeamData {
-    var teamData = arrayOf(
+    var teamData:ArrayList<TeamBank> = arrayListOf(
         TeamBank(0, 0, "Team Oniq", "Tim yang dikenal karena agresifitas dan taktik cepat.","R.drawable.team1",1,""),
         TeamBank(1, 0, "Team Aurora", "Tim pemula dengan potensi besar dalam turnamen mendatang.", "R.drawable.team2",2,""),
         TeamBank(2, 1, "Team Valiant", "Tim dengan strategi bertahan dan pemain veteran.","R.drawable.team3",3,""),
