@@ -16,32 +16,17 @@ import com.squareup.picasso.Picasso
 import com.mlbdev.mantapluarbiasa.databinding.FragmentWhoWeAreBinding
 import org.json.JSONObject
 
-//private val "GAME_INDEX" = "gameIndex"
-
 class WhoWeAreFragment : Fragment() {
 
     private lateinit var binding: FragmentWhoWeAreBinding
-    private var name: String? = null
-    private var description: String? = null
-    private var image: String? = null
-    private var likeCount:Int = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            gameIndex = it.getInt("GAME_INDEX", 1)
-//        }
-    }
+    private var whoWeAreList: List<WhoWeAreBank> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ):
-    View? {
+    ): View? {
         binding = FragmentWhoWeAreBinding.inflate(inflater, container, false)
-
         fetchTeamData()
-
         return binding.root
     }
 
@@ -57,16 +42,10 @@ class WhoWeAreFragment : Fragment() {
                     if (obj.getString("result") == "OK") {
                         val data = obj.getJSONArray("data")
                         val sType = object : TypeToken<List<WhoWeAreBank>>() {}.type
-                        val whoWeAreList: List<WhoWeAreBank> = Gson().fromJson(data.toString(), sType)
-                        if (whoWeAreList.isNotEmpty()) {
-                            val data = whoWeAreList[0]
-                            name = data.name
-                            description = data.description
-                            image = data.image
-                            likeCount = data.like
+                        whoWeAreList = Gson().fromJson(data.toString(), sType)
 
-                            updateUI()
-                        }
+                        // Menampilkan data ke UI
+                        updateUI()
                     } else {
                         Toast.makeText(context, "No data found", Toast.LENGTH_SHORT).show()
                     }
@@ -77,32 +56,28 @@ class WhoWeAreFragment : Fragment() {
             { error ->
                 Toast.makeText(context, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
             }
-        ) {
-        }
+        ) {}
         queue.add(stringRequest)
     }
 
     private fun updateUI() {
-        binding.txtTeamName.text = name
-        binding.txtDescription.text = description
-        binding.btnLike.text = "Likes: $likeCount"  // Display the like count
+        // Pastikan bahwa list tidak kosong
+        if (whoWeAreList.isNotEmpty()) {
+            val team = whoWeAreList[0] // Ambil data pertama untuk saat ini
 
-        // Load image with Picasso
-        if (image != null) {
+            // Update UI dengan data
+            binding.txtTeamName.text = team.name
+            binding.txtDescription.text = team.description
+
+            // Set Like button text jika perlu
+            //binding.btnLike.text = "Likes: ${team.likeCount}"
+
+            // Load gambar dengan Picasso
             Picasso.get()
-                .load(image) // Load the image URL
-//                .placeholder(R.drawable.placeholder_image) // Optional placeholder image while loading
-//                .error(R.drawable.error_image) // Optional error image if the URL is invalid
+                .load(team.image) // Ganti dengan URL gambar yang diterima
                 .into(binding.imageTeam)
         }
     }
-
-    data class WhoWeAre(
-        val name: String,
-        val description: String,
-        val image: String,
-        val like: Int  // Added like field
-    )
 
     companion object {
         @JvmStatic
