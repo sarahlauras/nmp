@@ -21,7 +21,7 @@ class WhatWePlay : AppCompatActivity() {
         binding.recGames.layoutManager = LinearLayoutManager(this)
         binding.recGames.setHasFixedSize(true)
         
-        val gameList = GameData.gameData
-        binding.recGames.adapter = GameAdapter(gameList)
+//        val gameList = GameData.gameData
+//        binding.recGames.adapter = GameAdapter(gameList)
     }
 }

@@ -26,11 +26,11 @@ class Achievement : AppCompatActivity() {
 
         val gameIndex = intent.getIntExtra("GAME_INDEX",0)
 
-        val gameName = GameData.gameData[gameIndex].name
-        binding.txtGame.text = gameName
+        //val gameName = GameData.gameData[gameIndex].name
+        //binding.txtGame.text = gameName
 
-        val gameImg = GameData.gameData[gameIndex].imageId
-        binding.imgPreview.setImageResource(gameImg)
+//        val gameImg = GameData.gameData[gameIndex].imageId
+//        binding.imgPreview.setImageResource(gameImg)
 
         updateYearSpinner(gameIndex) //update sesuai gameIndex
 

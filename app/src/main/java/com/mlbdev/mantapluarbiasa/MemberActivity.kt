@@ -27,8 +27,8 @@ class MemberActivity : AppCompatActivity() {
 
         val membersArray = filteredMembers.toTypedArray()
 
-        val gameImg = GameData.gameData[gameIndex].imageId
-        binding.imgGame.setImageResource(gameImg)
+        //val gameImg = GameData.gameData[gameIndex].imageId
+        //binding.imgGame.setImageResource(gameImg)
 
         val teamsName = TeamData.teamData[teamIndex].nameteam
         binding.txtTeams.text = teamsName
