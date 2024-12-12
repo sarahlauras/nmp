@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragments:ArrayList<Fragment> = arrayListOf(
-            WhatWePlayFragment.newInstance(GameData.gameData),
-            OurScheduleFragment.newInstance(OurScheduleData.scheduleData),
-            WhoWeAreFragment.newInstance(1)
+            //WhatWePlayFragment.newInstance(),
+            //OurScheduleFragment.newInstance(OurScheduleData.scheduleData),
+            WhoWeAreFragment.newInstance()
         )
 
         binding.viewpager.adapter = HomeAdapter(this, fragments)
@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
                 binding.viewpager.currentItem = 0 //it itu refer ke buttomnav
             } else if (it.itemId == R.id.itemSchedule) {
                 binding.viewpager.currentItem = 1
-            //} else if (it.itemId == R.id.itemWhoWeAre) {
-            //    binding.viewpager.currentItem = 2
+            } else if (it.itemId == R.id.itemWhoWeAre) {
+                binding.viewpager.currentItem = 2
             }
             true
         }

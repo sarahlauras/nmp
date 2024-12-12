@@ -1,26 +1,36 @@
 package com.mlbdev.mantapluarbiasa
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mlbdev.mantapluarbiasa.databinding.ActivityWhoWeAreBinding
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.squareup.picasso.Picasso
 import com.mlbdev.mantapluarbiasa.databinding.FragmentWhoWeAreBinding
+import org.json.JSONObject
 
 //private val "GAME_INDEX" = "gameIndex"
 
 class WhoWeAreFragment : Fragment() {
 
-    private var likeCount = 0
     private lateinit var binding: FragmentWhoWeAreBinding
-    private var gameIndex: Int=0
+    private var name: String? = null
+    private var description: String? = null
+    private var image: String? = null
+    private var likeCount:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            gameIndex = it.getInt("GAME_INDEX", 1)
-        }
+//        arguments?.let {
+//            gameIndex = it.getInt("GAME_INDEX", 1)
+//        }
     }
 
     override fun onCreateView(
@@ -29,38 +39,73 @@ class WhoWeAreFragment : Fragment() {
     ):
     View? {
         binding = FragmentWhoWeAreBinding.inflate(inflater, container, false)
-        val filteredTeams = TeamData.teamData.filter {
-            it.idgame == gameIndex
-        }
 
-        if(filteredTeams.isNotEmpty()){
-            val team = filteredTeams[0]
+        fetchTeamData()
 
-            binding.imageTeam.setImageResource(team.image)
-            binding.txtTeamName.text = team.nameteam
-            binding.txtDescription.text =team.description
-        }
-        binding.btnLike.setOnClickListener {
-            likeCount++
-            updateLikeButton()
-        }
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_who_we_are, container, false)
         return binding.root
-
     }
 
-    private fun updateLikeButton() {
-        binding.btnLike.text = "Like: $likeCount"
+    private fun fetchTeamData() {
+        val url = "https://ubaya.xyz/native/160422015/whoweare.php"
+        val queue = Volley.newRequestQueue(requireContext())
+
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                try {
+                    val obj = JSONObject(response)
+                    if (obj.getString("result") == "OK") {
+                        val data = obj.getJSONArray("data")
+                        val sType = object : TypeToken<List<WhoWeAreBank>>() {}.type
+                        val whoWeAreList: List<WhoWeAreBank> = Gson().fromJson(data.toString(), sType)
+                        if (whoWeAreList.isNotEmpty()) {
+                            val data = whoWeAreList[0]
+                            name = data.name
+                            description = data.description
+                            image = data.image
+                            likeCount = data.like
+
+                            updateUI()
+                        }
+                    } else {
+                        Toast.makeText(context, "No data found", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                Toast.makeText(context, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        ) {
+        }
+        queue.add(stringRequest)
     }
+
+    private fun updateUI() {
+        binding.txtTeamName.text = name
+        binding.txtDescription.text = description
+        binding.btnLike.text = "Likes: $likeCount"  // Display the like count
+
+        // Load image with Picasso
+        if (image != null) {
+            Picasso.get()
+                .load(image) // Load the image URL
+//                .placeholder(R.drawable.placeholder_image) // Optional placeholder image while loading
+//                .error(R.drawable.error_image) // Optional error image if the URL is invalid
+                .into(binding.imageTeam)
+        }
+    }
+
+    data class WhoWeAre(
+        val name: String,
+        val description: String,
+        val image: String,
+        val like: Int  // Added like field
+    )
 
     companion object {
         @JvmStatic
-        fun newInstance(gameIndex: Int) =
-            WhoWeAreFragment().apply {
-                arguments = Bundle().apply {
-                    putInt("GAME_INDEX", gameIndex)
-                }
-            }
+        fun newInstance() = WhoWeAreFragment()
     }
 }
