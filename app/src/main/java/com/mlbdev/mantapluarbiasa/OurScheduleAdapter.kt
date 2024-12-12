@@ -30,6 +30,18 @@ class OurScheduleAdapter(private val scheduleList:ArrayList<OurScheduleBank>): R
         holder.binding.txtNamaSchedule.text = schedule.nama_schedule
         holder.binding.txtGame.text = schedule.nama_game
         holder.binding.txtTeam.text = schedule.nama_team
+
+        holder.itemView.setOnClickListener {
+            val context = it.context
+            val intent = Intent(context, SchedulePageDetail::class.java).apply {
+                putExtra("SCHEDULE_NAME", schedule.nama_schedule)
+                putExtra("GAME_NAME", schedule.nama_game)
+                putExtra("TEAM_NAME", schedule.nama_team)
+                putExtra("SCHEDULE_DATE", schedule.date)
+                putExtra("SCHEDULE_INDEX", position)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
