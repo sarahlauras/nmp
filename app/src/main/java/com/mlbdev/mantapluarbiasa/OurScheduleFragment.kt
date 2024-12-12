@@ -25,7 +25,7 @@ private val ARG_SCHEDULE = "arrayschedule"
 class OurScheduleFragment : Fragment() {
     var our_schedule: ArrayList<OurScheduleBank> = ArrayList()
     private lateinit var binding: ActivityOurScheduleBinding
-    //private lateinit var listAdapter: OurScheduleAdapter
+    private lateinit var listAdapter: OurScheduleAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,16 +50,18 @@ class OurScheduleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = ActivityOurScheduleBinding.inflate(inflater, container, false)
+        listAdapter = OurScheduleAdapter(our_schedule)
+        binding.schedulePage.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = listAdapter
+        }
         return binding.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(schedule:ArrayList<OurScheduleBank>) = OurScheduleFragment().apply {
-            arguments = Bundle().apply {
-                putParcelableArrayList(ARG_SCHEDULE, schedule)
-            }
-        }
+        fun newInstance() = OurScheduleFragment()
     }
 
     fun readSchedule(username: String) {
@@ -94,11 +96,7 @@ class OurScheduleFragment : Fragment() {
     }
 
     fun updateList(){
-        val lm = LinearLayoutManager(activity)
-        with(binding.schedulePage){
-            layoutManager = lm
-            setHasFixedSize(true)
-            adapter = OurScheduleAdapter(our_schedule)
-        }
+        listAdapter = OurScheduleAdapter(our_schedule)
+        binding.schedulePage.adapter = listAdapter
     }
 }

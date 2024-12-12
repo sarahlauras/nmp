@@ -45,7 +45,6 @@ class WhatWePlayFragment : Fragment() {
     ): View? {
         binding = FragmentWhatWePlayBinding.inflate(inflater, container, false)
 
-        // Menampilkan data pada RecyclerView
         listAdapter = GameAdapter(whatwe_play)
         binding.recGames.apply {
             layoutManager = LinearLayoutManager(requireContext())
