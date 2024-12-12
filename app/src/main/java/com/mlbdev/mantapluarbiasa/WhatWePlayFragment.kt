@@ -68,7 +68,7 @@ class WhatWePlayFragment : Fragment() {
     }
     fun readGame(username : String) {
         val queue = Volley.newRequestQueue(requireContext())
-        val url = "https://ubaya.xyz/native/160422015/ourschedule.php"
+        val url = "https://ubaya.xyz/native/160422015/whatweplay.php"
 
         val stringRequest = object : StringRequest(
             Request.Method.POST,
