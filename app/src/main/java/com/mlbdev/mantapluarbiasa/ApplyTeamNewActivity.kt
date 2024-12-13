@@ -23,7 +23,7 @@ import org.json.JSONObject
 
 class ApplyTeamNewActivity : AppCompatActivity() {
     var games: ArrayList<GameBank> = ArrayList()
-    var teams: ArrayList<TeamBank> = ArrayList()
+    var selectedTeamId: Int? = null  // Menyimpan idteam yang dipilih
     private lateinit var binding: ActivityApplyTeamNewBinding
     var selectedGameName = ""
 
@@ -36,23 +36,24 @@ class ApplyTeamNewActivity : AppCompatActivity() {
         val username = sharedPreferences.getString("USERNAME", null)
         val idMember = intent.getIntExtra("ID_MEMBER", -1)  // Ambil idMember dari Intent
 
-
         readGame()
+
         binding.spinnerGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 selectedGameName = games[position].name
                 readTeam(selectedGameName)
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
-        val description = binding.txtDesc.text
         binding.btnApplyTeam.setOnClickListener {
-            val selectedTeam = teams[binding.spinnerTeam.selectedItemPosition]
-            val idteam = selectedTeam.idteam
-            addProposal(idMember, idteam.toString(), description.toString())
+            selectedTeamId?.let {
+                val description = binding.txtDesc.text.toString()
+                addProposal(idMember, it.toString(), description) // Gunakan selectedTeamId langsung
+            } ?: run {
+                Toast.makeText(this, "Please select a team first", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -70,7 +71,7 @@ class ApplyTeamNewActivity : AppCompatActivity() {
                     val sType = object : TypeToken<List<GameBank>>() {}.type
                     games = Gson().fromJson(data.toString(), sType) as ArrayList<GameBank>
 
-                    val names = games.getNameGames()
+                    val names = getNameGames()  // Panggil fungsi getNameGames untuk mendapatkan nama-nama game
                     val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, names)
                     binding.spinnerGame.adapter = adapter
                     binding.spinnerGame.setSelection(0)
@@ -78,72 +79,78 @@ class ApplyTeamNewActivity : AppCompatActivity() {
                     Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show()
                 }
             },
-            {
-                Log.e("apiresult", it.message.toString())
-            }
+            { error -> Log.e("apiresult", error.message.toString()) }
         ){}
         queue.add(stringRequest)
     }
 
     private fun readTeam(name: String) {
-        // Menampilkan spinnerTeam setelah memilih game
-        binding.spinnerTeam.visibility = View.VISIBLE
-
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/applyteamnew_team.php"
 
         val stringRequest = object : StringRequest(
             Request.Method.POST,
             url,
-            {
-                val obj = JSONObject(it)
+            { response ->
+                val obj = JSONObject(response)
                 if (obj.getString("result") == "OK") {
                     val data = obj.getJSONArray("data")
-                    val teamsList = mutableListOf<String>()  // Menyimpan nama-nama tim
+                    if (data.length() > 0) {
+                        val teamsList = mutableListOf<String>()  // List nama tim
 
-                    // Loop untuk mengambil idteam dan nama tim dari JSON
-                    for (i in 0 until data.length()) {
-                        val teamObj = data.getJSONObject(i)
-                        val teamName = teamObj.getString("team")  // Mendapatkan nama tim
-                        val idteam = teamObj.getInt("idteam")  // Mendapatkan idteam
+                        // Mengambil data tim dari response dan menyimpannya dalam list teams
+                        for (i in 0 until data.length()) {
+                            val teamObj = data.getJSONObject(i)
+                            val teamName = teamObj.getString("team")  // Mendapatkan nama tim
+                            val idteam = teamObj.getInt("idteam")  // Mendapatkan idteam
 
-                        // Menambahkan objek TeamBank ke dalam list teams
-                        teams.add(TeamBank(idteam, 0, teamName, "", "", 0, ""))
+                            // Menyimpan idteam yang dipilih dari spinner
+                            if (i == 0) { // Misalnya kita langsung pilih tim pertama
+                                selectedTeamId = idteam
+                            }
 
-                        // Menyimpan nama tim untuk ditampilkan di spinner
-                        teamsList.add(teamName)
+                            teamsList.add(teamName)  // Menambahkan nama tim ke spinner
+                        }
+
+                        // Mengatur adapter spinner dengan nama tim
+                        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, teamsList)
+                        binding.spinnerTeam.adapter = adapter
+
+                        // Menambahkan listener pada spinner
+                        binding.spinnerTeam.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                                // Menyimpan idteam yang dipilih ke selectedTeamId dari response
+                                selectedTeamId = data.getJSONObject(position).getInt("idteam")
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {}
+                        }
+                    } else {
+                        Toast.makeText(this, "No team data found", Toast.LENGTH_SHORT).show()
                     }
-
-                    // Menampilkan nama tim di spinnerTeam
-                    val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, teamsList)
-                    binding.spinnerTeam.adapter = adapter
-                    binding.spinnerTeam.setSelection(0)
                 } else {
-                    Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Failed to fetch team data", Toast.LENGTH_SHORT).show()
                 }
             },
-            {
-                Log.e("apiresult", it.message.toString())
-            }
+            { error -> Log.e("Volley Error", error.toString()) }
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = mutableMapOf<String, String>()
-                params["game"] = name // Mengirimkan nama game yang dipilih
+                params["game"] = name  // Kirim nama game sebagai parameter
                 return params
             }
         }
         queue.add(stringRequest)
     }
 
-    private fun List<GameBank>.getNameGames(): List<String> {
-        return this.map { it.name }
+    private fun getNameGames(): List<String> {
+        // Mengembalikan nama-nama game dari list games
+        return games.map { it.name }
     }
 
-    private fun List<TeamBank>.getNameTeams(): List<String> {
-        return this.map { it.nameteam }
-    }
+    private fun addProposal(idMember: Int, idteam: String, description: String) {
+        Log.d("RequestParams", "idMember: $idMember, idTeam: $selectedTeamId, description: $description")
 
-    private fun addProposal(idmember:Int, idteam:String, description:String){
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/applyteamnew_add.php"
 
@@ -170,13 +177,12 @@ class ApplyTeamNewActivity : AppCompatActivity() {
             { error ->
                 Log.e("Volley Error", error.toString())
                 Toast.makeText(this, "Network Error: ${error.networkResponse?.statusCode}", Toast.LENGTH_SHORT).show()
-
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
-                val params = HashMap<String, String>()
-                params["idmember"] = idmember.toString()
-                params["idteam"] = idteam
+                val params = mutableMapOf<String, String>()
+                params["idmember"] = idMember.toString()
+                params["idteam"] = idteam  // Gunakan selectedTeamId yang sudah ada
                 params["description"] = description
                 return params
             }
@@ -184,3 +190,4 @@ class ApplyTeamNewActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 }
+

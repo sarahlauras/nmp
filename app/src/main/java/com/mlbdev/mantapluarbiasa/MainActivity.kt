@@ -3,6 +3,7 @@ package com.mlbdev.mantapluarbiasa
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
 
         // Ambil idmember dari SharedPreferences
         val sharedPreferences = getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
-        val idMember = sharedPreferences.getInt("ID_MEMBER", -1)
+        val idMember = sharedPreferences.getInt("ID_MEMBER", -1) // Ambil idMember sebagai Int
+        Log.d("MainActivityWoi", "ID_MEMBER: $idMember") // Log untuk mengecek nilai idMember
+
 
         val fragments: ArrayList<Fragment> = arrayListOf(
             WhatWePlayFragment.newInstance(),

@@ -59,9 +59,10 @@ class SignIn : AppCompatActivity() {
                         // Simpan idmember dan username ke SharedPreferences
                         val sharedPreferences = getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
-                        editor.putString("IDMEMBER", idMember)  // Simpan idmember
+                        editor.putInt("ID_MEMBER", idMember.toInt())  // Simpan idmember sebagai Int
                         editor.putString("USERNAME", username) // Simpan username
                         editor.apply()
+
 
                         // Pindah ke MainActivity
                         startActivity(Intent(this, MainActivity::class.java))
