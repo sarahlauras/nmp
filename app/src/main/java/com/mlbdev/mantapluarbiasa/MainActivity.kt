@@ -1,8 +1,10 @@
 package com.mlbdev.mantapluarbiasa
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.mlbdev.mantapluarbiasa.databinding.ActivityMainBinding
@@ -41,6 +43,11 @@ class MainActivity : AppCompatActivity() {
             true
         }
         binding.btnApplyTeam.setOnClickListener {
+            val sharedPreferences = this.getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
+            val username = sharedPreferences.getString("USERNAME", null)
+            val editor = sharedPreferences.edit()
+            editor.putString("USERNAME", username)
+            editor.apply()
             val intent = Intent(this, ApplyTeamActivity::class.java)
             startActivity(intent)
         }

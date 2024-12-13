@@ -31,6 +31,9 @@ class WhatWePlayFragment : Fragment() {
 
         val sharedPreferences = requireContext().getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("USERNAME", null)
+        val editor = sharedPreferences.edit()
+        editor.putString("USERNAME", username)
+        editor.apply()
 
         if(username != null) {
             readGame(username)  // Hanya butuh username untuk mengakses data

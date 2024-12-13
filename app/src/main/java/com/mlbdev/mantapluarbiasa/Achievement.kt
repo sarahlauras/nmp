@@ -32,7 +32,7 @@ class Achievement : AppCompatActivity() {
         val name = intent.getStringExtra("name") ?: ""
         binding.txtGame.text = name
 
-        val date = getImgAndYearsFromServer(name)
+        getImgAndYearsFromServer(name)
 
         binding.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
