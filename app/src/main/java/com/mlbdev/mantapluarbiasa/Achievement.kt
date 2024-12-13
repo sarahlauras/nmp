@@ -60,8 +60,10 @@ class Achievement : AppCompatActivity() {
                             years.add(year)
                         }
 
+                        val sortedYears = years.toList().sorted()
+
                         // Update the spinner with the years
-                        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
+                        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sortedYears)
                         binding.spinnerYear.adapter = adapter
                         binding.spinnerYear.setSelection(0) // Set default selection to "All"
                     } else {

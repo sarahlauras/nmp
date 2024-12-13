@@ -56,19 +56,23 @@ class SignIn : AppCompatActivity() {
                     if (status == "success") {
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
+                        // Simpan username ke SharedPreferences
                         val sharedPreferences =
                             getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
                         editor.putString("USERNAME", username)
                         editor.apply()
 
+                        // Pindah ke MainActivity
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
+                        // Jika login gagal
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
+                    Toast.makeText(this, "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }
             },
             { error ->
@@ -78,7 +82,6 @@ class SignIn : AppCompatActivity() {
                     "Network Error: ${error.networkResponse?.statusCode}",
                     Toast.LENGTH_SHORT
                 ).show()
-
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
