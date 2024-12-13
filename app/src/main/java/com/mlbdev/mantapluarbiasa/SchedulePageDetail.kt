@@ -42,7 +42,7 @@ class SchedulePageDetail : AppCompatActivity() {
         binding.txtTeam.text = teamName
         binding.txtDateTime.text = scheduleDate
 
-        loadScheduleDetail()
+        loadScheduleDetail(scheduleName)
 
         Log.d("SchedulePageDetail", "Schedule Name: $scheduleName, Game Name: $gameName, Team Name: $teamName")
 
@@ -51,7 +51,7 @@ class SchedulePageDetail : AppCompatActivity() {
         }
     }
 
-    private fun loadScheduleDetail() {
+    private fun loadScheduleDetail(scheduleName: String?) {
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/schedule_detail.php"
 
@@ -93,7 +93,7 @@ class SchedulePageDetail : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-//                params["nama_event"] = scheduleName?: "Unknown Schedule"
+                params["nama_event"] = scheduleName?: "Unknown Schedule"
 //                params["nama_game"] = gameName?: "Unknown Schedule"
 //                params["nama_team"] = teamName?: "Unknown Schedule"
                 return params
