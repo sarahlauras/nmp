@@ -15,12 +15,14 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mlbdev.mantapluarbiasa.databinding.ActivityMainBinding
 import com.mlbdev.mantapluarbiasa.databinding.ActivitySchedulePageDetailBinding
+import com.squareup.picasso.Picasso
 import org.json.JSONObject
 
 class SchedulePageDetail : AppCompatActivity() {
     private lateinit var binding: ActivitySchedulePageDetailBinding
     private lateinit var scheduleDetail: ScheduleDetailBank
     private var selectedIndex: Int = -1
+//    private var scheduleList: ArrayList<ScheduleDetailBank> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,7 @@ class SchedulePageDetail : AppCompatActivity() {
 
         loadScheduleDetail()
 
+        Log.d("SchedulePageDetail", "Schedule Name: $scheduleName, Game Name: $gameName, Team Name: $teamName")
 
         binding.btnNotify.setOnClickListener(){
             Toast.makeText(this,"Notification Created", Toast.LENGTH_SHORT).show()
@@ -57,18 +60,27 @@ class SchedulePageDetail : AppCompatActivity() {
             url,
             {
                 val obj = JSONObject(it)
+                Log.d("SchedulePageDetail", "Received JSON: $it")
                 if (obj.getString("result") == "OK") {
                     val data = obj.getJSONArray("data")
+                    Log.d("SchedulePageDetail", "JSON data before parsing: ${data.toString()}")
                     val sType = object : TypeToken<List<ScheduleDetailBank>>() {}.type
                     val scheduleList: List<ScheduleDetailBank> = Gson().fromJson(data.toString(), sType)
+                    Log.d("SchedulePageDetail", "Schedule list size: ${scheduleList.size}")
 
                     if (selectedIndex >= 0 && selectedIndex < scheduleList.size) {
                         scheduleDetail = scheduleList[selectedIndex]  // Ambil data berdasarkan indeks yang dipilih
                         binding.txtDescription.text = scheduleDetail.description
                         binding.txtLocation.text = scheduleDetail.location
                         binding.txtDateTime.text = scheduleDetail.time
+
+                        Picasso.get()
+                            .load(scheduleDetail.image_url)
+                            .into(binding.imgEvent)
                     } else {
                         Toast.makeText(this, "Invalid schedule index", Toast.LENGTH_SHORT).show()
+
+                        Log.d("SchedulePageDetail", "Selected index: $selectedIndex")
                     }
 
                 } else {
@@ -81,12 +93,15 @@ class SchedulePageDetail : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                //params["username"] = username // Tambahkan parameter username
+//                params["nama_event"] = scheduleName?: "Unknown Schedule"
+//                params["nama_game"] = gameName?: "Unknown Schedule"
+//                params["nama_team"] = teamName?: "Unknown Schedule"
                 return params
             }
         }
 
         queue.add(stringRequest)
     }
+
 
 }

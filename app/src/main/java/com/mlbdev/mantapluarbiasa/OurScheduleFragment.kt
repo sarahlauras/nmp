@@ -24,16 +24,15 @@ private val ARG_SCHEDULE = "arrayschedule"
 
 class OurScheduleFragment : Fragment() {
     var our_schedule: ArrayList<OurScheduleBank> = ArrayList()
-    private lateinit var binding: ActivityOurScheduleBinding
-    private lateinit var listAdapter: OurScheduleAdapter
+    lateinit var binding: ActivityOurScheduleBinding
+    lateinit var listAdapter: OurScheduleAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            our_schedule = it.getParcelableArrayList<OurScheduleBank>(ARG_SCHEDULE) as ArrayList<OurScheduleBank>
-//        }
+
         val sharedPreferences = requireContext().getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("USERNAME", null)
+//        Log.d("sharedPrefs", "Username: $username")
 
         if(username != null){
             readSchedule(username)
@@ -72,7 +71,9 @@ class OurScheduleFragment : Fragment() {
             Request.Method.POST,
             url,
             {
-                val obj = JSONObject(it)
+                response ->
+                Log.d("apiresult", "Response: $response")
+                val obj = JSONObject(response)
                 if (obj.getString("result") == "OK") {
                     val data = obj.getJSONArray("data")
                     val sType = object : TypeToken<List<OurScheduleBank>>() {}.type
@@ -83,7 +84,8 @@ class OurScheduleFragment : Fragment() {
                 }
             },
             {
-                Log.e("apiresult", it.message.toString())
+//                Log.e("apiresult", it.message.toString())
+                Log.e("apiresult", "Error: ${it.message}")
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
@@ -98,5 +100,6 @@ class OurScheduleFragment : Fragment() {
     fun updateList(){
         listAdapter = OurScheduleAdapter(our_schedule)
         binding.schedulePage.adapter = listAdapter
+        Log.d("OurScheduleFragment", "Updated list size: ${our_schedule.size}")
     }
 }
