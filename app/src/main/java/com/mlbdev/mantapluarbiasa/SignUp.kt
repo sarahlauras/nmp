@@ -12,14 +12,13 @@ import com.mlbdev.mantapluarbiasa.databinding.ActivitySignUpBinding
 import org.json.JSONObject
 
 class SignUp : AppCompatActivity() {
-    private lateinit var binding:ActivitySignUpBinding
+    private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //jika btnSubmit dipencet
         binding.btnSubmit.setOnClickListener {
             val fname = binding.txtFirstname.text.toString()
             val lname = binding.txtLastname.text.toString()
@@ -27,24 +26,23 @@ class SignUp : AppCompatActivity() {
             val password = binding.txtPassword.text.toString()
             val repassword = binding.txtRepeatPassword.text.toString()
 
-            if(fname.isNotEmpty() && lname.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && repassword.isNotEmpty()){
-                if(password == repassword){
-                    signUp(fname, lname, username, password, repassword)
-                }
-                else{
+            if (fname.isNotEmpty() && lname.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && repassword.isNotEmpty()) {
+                if (password == repassword) {
+                    signUp(fname, lname, username, password)
+                } else {
                     Toast.makeText(this, "Password dan Re-password beda", Toast.LENGTH_SHORT).show()
                 }
-            }else{
+            } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.checkBox.setOnCheckedChangeListener{_, isChecked->
+        binding.checkBox.setOnCheckedChangeListener { _, isChecked ->
             binding.btnSubmit.isEnabled = isChecked
         }
     }
 
-    fun signUp(fname: String, lname: String, username: String, password: String, repassword: String) {
+    fun signUp(fname: String, lname: String, username: String, password: String) {
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/signup.php"
 
@@ -58,7 +56,17 @@ class SignUp : AppCompatActivity() {
                     val message = obj.getString("message")
 
                     if (status == "success") {
+                        // Ambil idmember dari response
+                        val idMember = obj.getString("idmember")
+
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+                        // Simpan idmember ke SharedPreferences
+                        val sharedPreferences = getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("IDMEMBER", idMember)  // Simpan idmember
+                        editor.apply()
+
                         startActivity(Intent(this, SignIn::class.java))
                         finish()
                     } else {
@@ -71,7 +79,6 @@ class SignUp : AppCompatActivity() {
             { error ->
                 Log.e("Volley Error", error.toString())
                 Toast.makeText(this, "Network Error: ${error.networkResponse?.statusCode}", Toast.LENGTH_SHORT).show()
-
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
@@ -86,3 +93,4 @@ class SignUp : AppCompatActivity() {
         queue.add(stringRequest)
     }
 }
+

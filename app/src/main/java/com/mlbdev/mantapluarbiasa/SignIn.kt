@@ -4,15 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.mlbdev.mantapluarbiasa.databinding.ActivitySignInBinding
-import com.mlbdev.mantapluarbiasa.databinding.ActivitySignUpBinding
 import org.json.JSONObject
 
 class SignIn : AppCompatActivity() {
@@ -54,13 +50,17 @@ class SignIn : AppCompatActivity() {
                     val message = obj.getString("message")
 
                     if (status == "success") {
+                        // Ambil idmember dan username dari response
+                        val idMember = obj.getString("idmember")
+                        val username = obj.getString("username")
+
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-                        // Simpan username ke SharedPreferences
-                        val sharedPreferences =
-                            getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
+                        // Simpan idmember dan username ke SharedPreferences
+                        val sharedPreferences = getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
-                        editor.putString("USERNAME", username)
+                        editor.putString("IDMEMBER", idMember)  // Simpan idmember
+                        editor.putString("USERNAME", username) // Simpan username
                         editor.apply()
 
                         // Pindah ke MainActivity
@@ -93,4 +93,5 @@ class SignIn : AppCompatActivity() {
         }
         queue.add(stringRequest)
     }
+
 }

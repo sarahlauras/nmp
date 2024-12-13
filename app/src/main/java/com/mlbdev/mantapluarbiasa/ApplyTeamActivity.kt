@@ -30,6 +30,8 @@ class ApplyTeamActivity : AppCompatActivity() {
         // Ambil username dari SharedPreferences
         val sharedPreferences = getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("USERNAME", null)
+        val idMember = sharedPreferences.getInt("ID_MEMBER", -1)  // Ambil idMember
+
 
         if (username != null) {
             readSchedule(username)
@@ -39,6 +41,7 @@ class ApplyTeamActivity : AppCompatActivity() {
 
         binding.fabAdd.setOnClickListener {
             val intent = Intent(this, ApplyTeamNewActivity::class.java)
+            intent.putExtra("ID_MEMBER", idMember)  // Pass idMember ke activity selanjutnya
             startActivity(intent)
         }
     }
