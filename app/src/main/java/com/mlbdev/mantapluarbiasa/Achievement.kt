@@ -14,11 +14,15 @@ import androidx.core.view.WindowInsetsCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.mlbdev.mantapluarbiasa.databinding.ActivityAchievementBinding
+import com.squareup.picasso.Picasso
 import org.json.JSONObject
 
 class Achievement : AppCompatActivity() {
     private lateinit var binding: ActivityAchievementBinding
+    private var achiev: ArrayList<AchievementBank> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +30,14 @@ class Achievement : AppCompatActivity() {
         setContentView(binding.root)
 
         val name = intent.getStringExtra("name") ?: ""
+        binding.txtGame.text = name
 
-        getYearsFromServer(name)
+        val date = getImgAndYearsFromServer(name)
 
         binding.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                filterAchievements()
+                val selectedDate = if (position == 0) "" else parent.getItemAtPosition(position).toString()
+                getAchievement(name,selectedDate)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -39,7 +45,7 @@ class Achievement : AppCompatActivity() {
         }
     }
 
-    private fun getYearsFromServer(name:String){
+    private fun getImgAndYearsFromServer(name:String){
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/achievementyear.php"
 
@@ -51,19 +57,32 @@ class Achievement : AppCompatActivity() {
                     if (jsonResponse.getString("result") == "OK") {
                         // Get the data from the response
                         val data = jsonResponse.getJSONArray("data")
-                        val years = mutableListOf("All")
+                        val years = mutableListOf<String>()
+                        var img : String ? =  null
 
                         // Loop through the JSON array and extract years
                         for (i in 0 until data.length()) {
-                            val yearObject = data.getJSONObject(i) // Ambil objek JSON
-                            val year = yearObject.getString("year(a.date)") // Ambil nilai tahun menggunakan key
-                            years.add(year)
+                            val dataObject = data.getJSONObject(i) // Ambil objek JSON
+
+                            if(dataObject.has("date")){
+                                val year = dataObject.getString("date") // Ambil nilai tahun menggunakan key
+                                years.add(year)
+                            }
+                            if(dataObject.has("image")){
+                                img = dataObject.getString("image")
+                            }
+                        }
+                        img?.let{
+                            Picasso.get()
+                                .load(it)
+                                .into(binding.imgPreview)
                         }
 
                         val sortedYears = years.toList().sorted()
+                        val finalYears = mutableListOf("All").apply{addAll(sortedYears)}
 
                         // Update the spinner with the years
-                        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sortedYears)
+                        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, finalYears)
                         binding.spinnerYear.adapter = adapter
                         binding.spinnerYear.setSelection(0) // Set default selection to "All"
                     } else {
@@ -85,36 +104,55 @@ class Achievement : AppCompatActivity() {
                 return params
             }
         }
-
         queue.add(stringRequest)
     }
 
-//    private fun updateYearSpinner(gameIndex:Int){
-//        val years = mutableListOf("All") + AchievementData.achievement
-//            .filter { it.gamesIndex == gameIndex }
-//            .map { it.year }
-//            .distinct()
-//
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
-//        binding.spinnerYear.adapter = adapter
-//        binding.spinnerYear.setSelection(0)
-//    }
+    private fun getAchievement(name:String, date:String){
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://ubaya.xyz/native/160422015/achievementselectyear.php"
+
+        val stringRequest = object : StringRequest(Request.Method.POST, url,
+            { response ->
+                try {
+                    val jsonResponse = JSONObject(response)
+                    if (jsonResponse.getString("result") == "OK") {
+                        val data = jsonResponse.getJSONArray("data")
+                        val sType = object : TypeToken<List<AchievementBank>>() {}.type
+
+                        achiev = Gson().fromJson(data.toString(), sType) as ArrayList<AchievementBank>
+                        filterAchievements()
+                    } else {
+                        Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Error parsing response", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                Log.e("VolleyError", error.message.toString())
+                Toast.makeText(this, "Request failed", Toast.LENGTH_SHORT).show()
+            }) {
+            // Add the "gname" parameter to the POST request
+            override fun getParams(): MutableMap<String, String> {
+                val params = mutableMapOf<String, String>()
+                params["name"] = name
+                params["date"] = date
+                return params
+            }
+        }
+        queue.add(stringRequest)
+    }
 
     private fun filterAchievements() {
-        val selectedYear = binding.spinnerYear.selectedItem.toString()
-
-        // Filter achievements based on selected year
-        val filteredAchievements = AchievementData.achievement.filter {
-            selectedYear == "All" || it.year == selectedYear
-        }
-
-        val formattedAchievements = filteredAchievements
-            .sortedBy { it.year }
+        val formattedAchievements = achiev
+            .sortedBy { it.date }
             .mapIndexed { index, achievement ->
-                "${index + 1}. ${achievement.achievement} (${achievement.year}) - ${achievement.team}"
+                "${index + 1}. ${achievement.name} (${achievement.date}) - ${achievement.team}"
             }
             .joinToString("\n")
 
         binding.txtAchievement.text = formattedAchievements
     }
+
 }
