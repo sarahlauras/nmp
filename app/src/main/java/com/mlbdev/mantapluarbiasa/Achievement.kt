@@ -1,6 +1,5 @@
 package com.mlbdev.mantapluarbiasa
 
-import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.View
