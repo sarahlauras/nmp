@@ -49,12 +49,13 @@ class OurScheduleAdapter(private val scheduleList:ArrayList<OurScheduleBank>): R
                 putExtra("GAME_NAME", schedule.nama_game)
                 putExtra("TEAM_NAME", schedule.nama_team)
                 putExtra("SCHEDULE_DATE", schedule.date)
-                putExtra("SCHEDULE_INDEX", position)
+                putExtra("IDEVENT", schedule.idevent)
+                putExtra("IDTEAM", schedule.idteam)
             }
             context.startActivity(intent)
         }
         Log.d("OurScheduleAdapter", "Upcoming events count: ${upcomingScheduleList.size}")
-        Log.d("OurScheduleAdapter", "Sending data to SchedulePageDetail: ${schedule.nama_event}, ${schedule.nama_game}, ${schedule.nama_team}, Index: $position")
+        Log.d("OurScheduleAdapter", "Sending data to SchedulePageDetail: ${schedule.nama_event}, ${schedule.nama_game}, ${schedule.nama_team}, Index: ${schedule.idevent}")
     }
 
     override fun getItemCount(): Int {

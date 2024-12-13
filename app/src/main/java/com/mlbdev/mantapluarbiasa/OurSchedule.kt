@@ -16,8 +16,8 @@ class OurSchedule : AppCompatActivity() {
         binding.schedulePage.layoutManager = LinearLayoutManager(this)
         binding.schedulePage.setHasFixedSize(true)
 
-        val scheduleList = OurScheduleData.scheduleData
-        binding.schedulePage.adapter = OurScheduleAdapter(scheduleList)
+        //val scheduleList = OurScheduleData.scheduleData
+        //binding.schedulePage.adapter = OurScheduleAdapter(scheduleList)
     }
 
 }

@@ -34,7 +34,7 @@ class ApplyTeamActivity : AppCompatActivity() {
 
 
         if (username != null) {
-            readSchedule(username)
+            readJoinProposal(username)
         } else {
             Toast.makeText(this, "Username not found", Toast.LENGTH_SHORT).show()
         }
@@ -46,7 +46,7 @@ class ApplyTeamActivity : AppCompatActivity() {
         }
     }
 
-    private fun readSchedule(username: String) {
+    private fun readJoinProposal(username: String) {
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/applyteam.php"
 
