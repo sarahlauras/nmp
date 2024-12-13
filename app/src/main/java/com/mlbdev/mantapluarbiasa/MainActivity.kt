@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -19,9 +20,17 @@ class MainActivity : AppCompatActivity() {
 
         // Ambil idmember dari SharedPreferences
         val sharedPreferences = getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
-        val idMember = sharedPreferences.getInt("ID_MEMBER", -1) // Ambil idMember sebagai Int
-        Log.d("MainActivityWoi", "ID_MEMBER: $idMember") // Log untuk mengecek nilai idMember
+        val username = sharedPreferences.getString("USERNAME", null)
+        val idMember = sharedPreferences.getInt("ID_MEMBER", -1) //
 
+        if (username != null) {
+            Log.d("MainActivity", "Username: $username")  // Log untuk mengecek username
+        } else {
+            Toast.makeText(this, "Username not found", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SignIn::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val fragments: ArrayList<Fragment> = arrayListOf(
             WhatWePlayFragment.newInstance(),
@@ -65,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.remove("USERNAME")
-        editor.remove("ID_MEMBER")  // Hapus idmember saat sign out
+        editor.remove("ID_MEMBER")
         editor.apply()
 
         val intent = Intent(this, SignIn::class.java)

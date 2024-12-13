@@ -1,5 +1,6 @@
 package com.mlbdev.mantapluarbiasa
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,18 @@ class SignIn : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Cek apakah sudah login (ada idMember di SharedPreferences)
+        val sharedPreferences = getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
+        val idMember = sharedPreferences.getInt("ID_MEMBER", -1) // Ambil idMember sebagai Int
+
+        // Jika idMember sudah ada, langsung menuju MainActivity tanpa login
+        if (idMember != -1) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()  // Menutup SignIn activity agar tidak kembali ke halaman login
+            return
+        }
 
         binding.btnSubmit.setOnClickListener {
             val username = binding.txtUsername.text.toString()
@@ -63,7 +76,6 @@ class SignIn : AppCompatActivity() {
                         editor.putString("USERNAME", username) // Simpan username
                         editor.apply()
 
-
                         // Pindah ke MainActivity
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
@@ -94,5 +106,5 @@ class SignIn : AppCompatActivity() {
         }
         queue.add(stringRequest)
     }
-
 }
+

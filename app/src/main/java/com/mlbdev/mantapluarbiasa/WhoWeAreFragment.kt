@@ -77,6 +77,9 @@ class WhoWeAreFragment : Fragment() {
                 .load(team.image) // Ganti dengan URL gambar yang diterima
                 .into(binding.imageTeam)
         }
+        else{
+            binding.txtDescription.text = "KOSONG"
+        }
     }
 
     companion object {

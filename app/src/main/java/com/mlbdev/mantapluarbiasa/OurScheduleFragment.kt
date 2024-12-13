@@ -27,20 +27,18 @@ class OurScheduleFragment : Fragment() {
     lateinit var binding: ActivityOurScheduleBinding
     lateinit var listAdapter: OurScheduleAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val sharedPreferences = requireContext().getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("USERNAME", null)
-//        Log.d("sharedPrefs", "Username: $username")
-
-        if(username != null){
-            readSchedule(username)
-        }
-        else{
+        Log.d("YOKUSERNAMEYOK", "Username: $username")
+        if (username != null && username.isNotEmpty()) {
+            readSchedule()
+        } else {
             Toast.makeText(context, "Username not found", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     override fun onCreateView(
@@ -63,15 +61,14 @@ class OurScheduleFragment : Fragment() {
         fun newInstance() = OurScheduleFragment()
     }
 
-    fun readSchedule(username: String) {
+    private fun readSchedule() {
         val queue = Volley.newRequestQueue(requireContext())
         val url = "https://ubaya.xyz/native/160422015/ourschedule.php"
 
         val stringRequest = object : StringRequest(
             Request.Method.POST,
             url,
-            {
-                response ->
+            { response ->
                 Log.d("apiresult", "Response: $response")
                 val obj = JSONObject(response)
                 if (obj.getString("result") == "OK") {
@@ -79,23 +76,22 @@ class OurScheduleFragment : Fragment() {
                     val sType = object : TypeToken<List<OurScheduleBank>>() {}.type
                     our_schedule = Gson().fromJson(data.toString(), sType) as ArrayList<OurScheduleBank>
                     updateList()
+                    Log.d("BERHASIL", "updatelist")
                 } else {
                     Toast.makeText(context, "No data found", Toast.LENGTH_SHORT).show()
                 }
             },
-            {
-//                Log.e("apiresult", it.message.toString())
-                Log.e("apiresult", "Error: ${it.message}")
+            { error ->
+                Log.e("apiresult", "Error: ${error.message}")
+                Toast.makeText(context, "Error connecting to server", Toast.LENGTH_SHORT).show()
             }
         ) {
-            override fun getParams(): MutableMap<String, String> {
-                val params = HashMap<String, String>()
-                params["username"] = username // Tambahkan parameter username
-                return params
-            }
+            // Tidak perlu getParams atau getBody, tinggal kirim request ke server tanpa parameter tambahan
         }
+
         queue.add(stringRequest)
     }
+
 
     fun updateList(){
         listAdapter = OurScheduleAdapter(our_schedule)
