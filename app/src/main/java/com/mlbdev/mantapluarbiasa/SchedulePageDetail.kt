@@ -30,28 +30,28 @@ class SchedulePageDetail : AppCompatActivity() {
         setContentView(binding.root)
 
         //ambil data
-        val scheduleName = intent.getStringExtra("SCHEDULE_NAME")
+        val nama_event = intent.getStringExtra("SCHEDULE_NAME")
         val gameName = intent.getStringExtra("GAME_NAME")
         val teamName = intent.getStringExtra("TEAM_NAME")
         val scheduleDate = intent.getStringExtra("SCHEDULE_DATE")
         selectedIndex = intent.getIntExtra("SCHEDULE_INDEX", -1)
 
         //tampilkan data
-        binding.txtName.text = scheduleName
+        binding.txtName.text = nama_event
         binding.txtGame.text = gameName
         binding.txtTeam.text = teamName
         binding.txtDateTime.text = scheduleDate
 
-        loadScheduleDetail(scheduleName)
+        loadScheduleDetail(nama_event)
 
-        Log.d("SchedulePageDetail", "Schedule Name: $scheduleName, Game Name: $gameName, Team Name: $teamName")
+        Log.d("SchedulePageDetail", "Schedule Name: $nama_event, Game Name: $gameName, Team Name: $teamName")
 
         binding.btnNotify.setOnClickListener(){
             Toast.makeText(this,"Notification Created", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun loadScheduleDetail(scheduleName: String?) {
+    private fun loadScheduleDetail(nama_event: String?) {
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/schedule_detail.php"
 
@@ -93,7 +93,7 @@ class SchedulePageDetail : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["nama_event"] = scheduleName?: "Unknown Schedule"
+                params["nama_event"] = nama_event?: "Unknown Schedule"
 //                params["nama_game"] = gameName?: "Unknown Schedule"
 //                params["nama_team"] = teamName?: "Unknown Schedule"
                 return params
