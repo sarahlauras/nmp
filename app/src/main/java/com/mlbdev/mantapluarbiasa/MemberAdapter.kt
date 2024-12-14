@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mlbdev.mantapluarbiasa.databinding.MemberCardBinding
 
-class MemberAdapter(private val memberActivity: Array<MembersBank>): RecyclerView.Adapter<MemberAdapter.MemberViewHolder>() {
+class MemberAdapter(private val members: ArrayList<MembersBank>): RecyclerView.Adapter<MemberAdapter.MemberViewHolder>() {
     class MemberViewHolder(val binding: MemberCardBinding):RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
         val binding  = MemberCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -13,14 +13,14 @@ class MemberAdapter(private val memberActivity: Array<MembersBank>): RecyclerVie
     }
 
     override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
-        holder.binding.txtNamaMember.text = memberActivity[position].name
+        holder.binding.txtNamaMember.text = String.format("%s %s", members[position].fname, members[position].lname)
 
-        holder.binding.imgMember.setImageResource(memberActivity[position].img)
+        holder.binding.imgMember.setImageResource(members[position].img)
 
-        holder.binding.txtRole.text = "Role : " + memberActivity[position].role
+        holder.binding.txtRole.text = "Role : " + members[position].description
     }
 
     override fun getItemCount(): Int {
-        return memberActivity.size
+        return members.size
     }
 }

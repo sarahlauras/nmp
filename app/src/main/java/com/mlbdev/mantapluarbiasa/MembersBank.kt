@@ -1,3 +1,5 @@
 package com.mlbdev.mantapluarbiasa
 
-data class MembersBank (var id:Int, var gamesIndex:Int, var teamsIndex:Int, var name:String, var role: String, var img:Int)
+import android.view.accessibility.AccessibilityManager.AudioDescriptionRequestedChangeListener
+
+data class MembersBank (var idmember:Int, var fname:String, var lname:String, var description: String, var img:Int, var team:String)

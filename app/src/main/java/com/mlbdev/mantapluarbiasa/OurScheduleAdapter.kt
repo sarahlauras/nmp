@@ -30,13 +30,6 @@ class OurScheduleAdapter(private val scheduleList:ArrayList<OurScheduleBank>): R
     override fun onBindViewHolder(holder: OurScheduleViewHolder, position: Int) {
         val schedule = upcomingScheduleList[position]
 
-//        val dateFormatInput = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())  // Format yang sesuai dengan format date string yang diberikan
-//        val myDate = dateFormatInput.parse(schedule.date)  // Mengonversi string ke Date
-//
-//        // Format objek Date ke format yang diinginkan
-//        val dateFormatOutput = SimpleDateFormat("dd MMM yyyy", Locale("id", "ID"))  // Format yang diinginkan untuk ditampilkan
-//        val formattedDate = dateFormatOutput.format(myDate)
-
         holder.binding.txtTgl.text = schedule.date
         holder.binding.txtNamaSchedule.text = schedule.nama_event
         holder.binding.txtGame.text = schedule.nama_game

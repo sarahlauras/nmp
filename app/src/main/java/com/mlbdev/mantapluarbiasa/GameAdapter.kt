@@ -2,6 +2,7 @@ package com.mlbdev.mantapluarbiasa
 
 import android.content.Intent
 import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +31,14 @@ class GameAdapter(private val gameList: ArrayList<GameBank>) : RecyclerView.Adap
         holder.binding.btnAchievement.setOnClickListener {
             val intent = Intent(holder.itemView.context, Achievement::class.java)
             intent.putExtra("name", game.name) // Send gname as an extra
+            holder.itemView.context.startActivity(intent)
+        }
+
+        holder.binding.btnTeams.setOnClickListener {
+            val intent = Intent(holder.itemView.context, Teams::class.java)
+            intent.putExtra("idgame", game.idgame.toString()) // Send gname as an extra
+            intent.putExtra("image", game.imageId)
+            Log.d("idgame", "${game.idgame}")
             holder.itemView.context.startActivity(intent)
         }
     }
