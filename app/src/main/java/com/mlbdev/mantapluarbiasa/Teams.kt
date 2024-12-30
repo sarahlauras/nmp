@@ -15,19 +15,21 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mlbdev.mantapluarbiasa.databinding.ActivityTeamsBinding
 import com.mlbdev.mantapluarbiasa.databinding.ActivityWhatWePlayBinding
+import com.mlbdev.mantapluarbiasa.databinding.DrawerLayoutTeamsBinding
 import com.mlbdev.mantapluarbiasa.databinding.TeamsCardBinding
 import com.squareup.picasso.Picasso
 import org.json.JSONObject
 
 
 class Teams : AppCompatActivity() {
-    private lateinit var binding: ActivityTeamsBinding
+    private lateinit var binding: DrawerLayoutTeamsBinding
     var teams: ArrayList<TeamBank> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTeamsBinding.inflate(layoutInflater)
+        binding = DrawerLayoutTeamsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.Teams.toolbar)
 
         val idgame = intent.getStringExtra("idgame") ?: ""
 
@@ -39,7 +41,7 @@ class Teams : AppCompatActivity() {
         if (imageId.isNotEmpty()) {
             Picasso.get()
                 .load(imageId)  // Memuat gambar dari URL atau path yang didapat
-                .into(binding.imgGame)  // Menampilkan gambar di ImageView
+                .into(binding.Teams.imgGame)  // Menampilkan gambar di ImageView
         }
     }
 
@@ -86,7 +88,7 @@ class Teams : AppCompatActivity() {
     private fun updateList() {
         Log.d("Teams", "Updating RecyclerView with ${teams.size} items")
         val lm = LinearLayoutManager(this)
-        binding.teamsPage.apply {
+        binding.Teams.teamsPage.apply {
             layoutManager = lm
             setHasFixedSize(true)
             adapter = TeamAdapter(teams)

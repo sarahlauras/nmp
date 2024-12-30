@@ -3,34 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    style="@style/Theme.Material3.Light"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8E1FB"
     tools:context=".Achievement">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/Widget.Material3.Toolbar"
         android:layout_width="417dp"
         android:layout_height="64dp"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnMenu"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:textColor="#000000"
-        app:icon="@drawable/baseline_menu_24"
-        app:iconPadding="0dp"
-        app:iconSize="40dp"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,19 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtEsport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/alfa_slab_one"
-        android:text="@string/e_sport_text"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfile"
-        app:layout_constraintStart_toEndOf="@+id/btnMenu"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imgPreview"
         android:layout_width="451dp"
@@ -69,7 +42,7 @@
 
     <Spinner
         android:id="@+id/spinnerYear"
-        style="spinner"
+        style="@style/MaterialAlertDialog.Material3.Body.Text"
         android:layout_width="348dp"
         android:layout_height="59dp"
         android:layout_marginTop="32dp"
@@ -80,6 +53,7 @@
 
     <TextView
         android:id="@+id/txtGame"
+        style="@style/MaterialAlertDialog.Material3.Title.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -92,6 +66,7 @@
 
     <TextView
         android:id="@+id/txtAchievement"
+        style="@style/TextAppearance.Material3.TitleSmall"
         android:layout_width="351dp"
         android:layout_height="265dp"
         android:layout_marginStart="10dp"
@@ -105,6 +80,7 @@
 
     <TextView
         android:id="@+id/textView5"
+        style="@style/MaterialAlertDialog.Material3.Body.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"

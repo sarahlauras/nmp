@@ -66,6 +66,8 @@ class SignIn : AppCompatActivity() {
                         // Ambil idmember dan username dari response
                         val idMember = obj.getString("idmember")
                         val username = obj.getString("username")
+                        val fname = obj.getString("fname")
+                        val lname = obj.getString("lname")
 
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
@@ -74,6 +76,8 @@ class SignIn : AppCompatActivity() {
                         val editor = sharedPreferences.edit()
                         editor.putInt("ID_MEMBER", idMember.toInt())  // Simpan idmember sebagai Int
                         editor.putString("USERNAME", username) // Simpan username
+                        editor.putString("FNAME", fname)
+                        editor.putString("LNAME", lname)
                         editor.apply()
 
                         // Pindah ke MainActivity

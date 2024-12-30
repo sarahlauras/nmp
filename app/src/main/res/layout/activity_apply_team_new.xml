@@ -60,6 +60,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtDesc"
+            style="@style/TextAppearance.Material3.ActionBar.Subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="clip_horizontal"
@@ -70,6 +71,7 @@
 
     <Button
         android:id="@+id/btnApplyTeam"
+        style="@style/Widget.Material3.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -81,6 +83,7 @@
 
     <TextView
         android:id="@+id/textView3"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -91,6 +94,7 @@
 
     <TextView
         android:id="@+id/textView6"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

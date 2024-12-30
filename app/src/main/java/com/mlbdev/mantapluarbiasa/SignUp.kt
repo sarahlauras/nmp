@@ -19,6 +19,12 @@ class SignUp : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(this, SignIn::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         binding.btnSubmit.setOnClickListener {
             val fname = binding.txtFirstname.text.toString()
             val lname = binding.txtLastname.text.toString()
@@ -40,6 +46,7 @@ class SignUp : AppCompatActivity() {
         binding.checkBox.setOnCheckedChangeListener { _, isChecked ->
             binding.btnSubmit.isEnabled = isChecked
         }
+
     }
 
     fun signUp(fname: String, lname: String, username: String, password: String) {
@@ -58,7 +65,7 @@ class SignUp : AppCompatActivity() {
                     if (status == "success") {
                         // Ambil idmember dari response
                         val idMember = obj.getString("idmember")
-
+                        Log.d("IDMEMBER", "$idMember")
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
                         // Simpan idmember ke SharedPreferences
@@ -67,7 +74,9 @@ class SignUp : AppCompatActivity() {
                         editor.putString("IDMEMBER", idMember)  // Simpan idmember
                         editor.apply()
 
-                        startActivity(Intent(this, SignIn::class.java))
+
+                        val intent = Intent(this, SignIn::class.java)
+                        startActivity(intent)
                         finish()
                     } else {
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

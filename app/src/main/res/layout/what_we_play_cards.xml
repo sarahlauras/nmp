@@ -43,13 +43,13 @@
 
             <TextView
                 android:id="@+id/txtTitle"
+                style="@style/MaterialAlertDialog.Material3.Title.Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Title"
-                android:textSize="20dp" />
+                android:text="Title" />
 
             <Space
                 android:layout_width="match_parent"
@@ -58,6 +58,7 @@
 
             <TextView
                 android:id="@+id/txtDesc"
+                style="@style/TextAppearance.Material3.ActionBar.Subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -77,6 +78,7 @@
 
                 <Button
                     android:id="@+id/btnAchievement"
+                    style="@style/Widget.Material3.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Achievement" />
@@ -88,6 +90,7 @@
 
                 <Button
                     android:id="@+id/btnTeams"
+                    style="@style/Widget.Material3.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="80dp"

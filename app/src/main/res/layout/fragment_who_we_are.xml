@@ -10,11 +10,11 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E8E1FB"
         tools:context=".WhoWeAreFragment">
 
         <TextView
             android:id="@+id/txtTeamName"
+            style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="151dp"
             android:layout_height="28dp"
             android:layout_marginStart="10dp"
@@ -32,7 +32,6 @@
             android:id="@+id/imageTeam"
             android:layout_width="418dp"
             android:layout_height="219dp"
-            android:layout_marginTop="69dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +40,7 @@
 
         <TextView
             android:id="@+id/txtDescription"
+            style="@style/MaterialAlertDialog.Material3.Body.Text"
             android:layout_width="371dp"
             android:layout_height="308dp"
             android:layout_marginStart="10dp"

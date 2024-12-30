@@ -13,24 +13,27 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mlbdev.mantapluarbiasa.databinding.ActivityAchievementBinding
+import com.mlbdev.mantapluarbiasa.databinding.DrawerLayoutAchievementsBinding
 import com.squareup.picasso.Picasso
 import org.json.JSONObject
 
 class Achievement : AppCompatActivity() {
-    private lateinit var binding: ActivityAchievementBinding
+    private lateinit var binding: DrawerLayoutAchievementsBinding
     private var achiev: ArrayList<AchievementBank> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAchievementBinding.inflate(layoutInflater)
+        binding = DrawerLayoutAchievementsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.Achievement.toolbar)
+
 
         val name = intent.getStringExtra("name") ?: ""
-        binding.txtGame.text = name
+        binding.Achievement.txtGame.text = name
 
         getImgAndYearsFromServer(name)
 
-        binding.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.Achievement.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedDate = if (position == 0) "" else parent.getItemAtPosition(position).toString()
                 getAchievement(name,selectedDate)
@@ -71,7 +74,7 @@ class Achievement : AppCompatActivity() {
                         img?.let{
                             Picasso.get()
                                 .load(it)
-                                .into(binding.imgPreview)
+                                .into(binding.Achievement.imgPreview)
                         }
 
                         val sortedYears = years.toList().sorted()
@@ -79,8 +82,8 @@ class Achievement : AppCompatActivity() {
 
                         // Update the spinner with the years
                         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, finalYears)
-                        binding.spinnerYear.adapter = adapter
-                        binding.spinnerYear.setSelection(0) // Set default selection to "All"
+                        binding.Achievement.spinnerYear.adapter = adapter
+                        binding.Achievement.spinnerYear.setSelection(0) // Set default selection to "All"
                     } else {
                         Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show()
                     }
@@ -148,7 +151,7 @@ class Achievement : AppCompatActivity() {
             }
             .joinToString("\n")
 
-        binding.txtAchievement.text = formattedAchievements
+        binding.Achievement.txtAchievement.text = formattedAchievements
     }
 
 }

@@ -66,6 +66,7 @@
 
                     <TextView
                         android:id="@+id/txtNamaMember"
+                        style="@style/TextAppearance.Material3.TitleMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -76,6 +77,7 @@
 
                     <TextView
                         android:id="@+id/txtRole"
+                        style="@style/MaterialAlertDialog.Material3.Body.Text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"

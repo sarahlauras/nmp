@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8E1FB"
     tools:context=".SchedulePageDetail">
 
     <ImageView
@@ -22,8 +21,8 @@
 
     <TextView
         android:id="@+id/txtGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="122dp"
+        android:layout_height="27dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_medium"
@@ -31,12 +30,13 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintHorizontal_bias="0.317"
         app:layout_constraintStart_toEndOf="@+id/txtName"
         app:layout_constraintTop_toBottomOf="@+id/imgEvent" />
 
     <TextView
         android:id="@+id/txtName"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -50,6 +50,7 @@
 
     <TextView
         android:id="@+id/txtLocation"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -62,6 +63,7 @@
 
     <TextView
         android:id="@+id/txtDateTime"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -74,6 +76,7 @@
 
     <TextView
         android:id="@+id/txtTeam"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -85,8 +88,9 @@
 
     <TextView
         android:id="@+id/txtDescription"
-        android:layout_width="305dp"
-        android:layout_height="283dp"
+        style="@style/TextAppearance.Material3.TitleSmall"
+        android:layout_width="358dp"
+        android:layout_height="264dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="70dp"
@@ -102,6 +106,7 @@
 
     <Button
         android:id="@+id/btnNotify"
+        style="@style/Widget.Material3.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -113,9 +118,9 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/Widget.Material3.Toolbar"
         android:layout_width="418dp"
         android:layout_height="69dp"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,12 +129,12 @@
 
     <TextView
         android:id="@+id/txtEsport"
+        style="@style/TextAppearance.Material3.TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/alfa_slab_one"
         android:text="@string/e_sport_text"
-        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintHorizontal_bias="0.498"

@@ -1,5 +1,6 @@
 package com.mlbdev.mantapluarbiasa
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -27,6 +28,12 @@ class WhoWeAreFragment : Fragment() {
     ): View? {
         binding = FragmentWhoWeAreBinding.inflate(inflater, container, false)
         fetchTeamData()
+        binding.btnLike.setOnClickListener {
+            addLikes()
+            val team = whoWeAreList[0]
+            team.likes = team.likes + 1
+            binding.btnLike.text = team.likes.toString()
+        }
         return binding.root
     }
 
@@ -43,7 +50,7 @@ class WhoWeAreFragment : Fragment() {
                         val data = obj.getJSONArray("data")
                         val sType = object : TypeToken<List<WhoWeAreBank>>() {}.type
                         whoWeAreList = Gson().fromJson(data.toString(), sType)
-
+                        Log.d("WhoWeAre", "Received like: $whoWeAreList")
                         // Menampilkan data ke UI
                         updateUI()
                     } else {
@@ -61,25 +68,55 @@ class WhoWeAreFragment : Fragment() {
     }
 
     private fun updateUI() {
-        // Pastikan bahwa list tidak kosong
         if (whoWeAreList.isNotEmpty()) {
-            val team = whoWeAreList[0] // Ambil data pertama untuk saat ini
+            val team = whoWeAreList[0]
+            Log.d("Members", "Received idteam: $team")
 
-            // Update UI dengan data
             binding.txtTeamName.text = team.name
             binding.txtDescription.text = team.description
+            binding.btnLike.text = team.likes.toString()
 
-            // Set Like button text jika perlu
-            //binding.btnLike.text = "Likes: ${team.likeCount}"
-
-            // Load gambar dengan Picasso
             Picasso.get()
-                .load(team.image) // Ganti dengan URL gambar yang diterima
+                .load(team.image)
                 .into(binding.imageTeam)
         }
         else{
             binding.txtDescription.text = "KOSONG"
         }
+    }
+
+    private fun addLikes() {
+        val queue = Volley.newRequestQueue(requireContext())
+        val url = "https://ubaya.xyz/native/160422015/addlikes.php"
+        Log.d("Members", "masuk addlikes ini")
+
+        val stringRequest = object : StringRequest(
+            Request.Method.POST,
+            url,
+            { response ->
+                try {
+                    val obj = JSONObject(response)
+                    val status = obj.getString("status")
+                    val message = obj.getString("message")
+
+                    if (status == "success") {
+
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                Log.e("Volley Error", error.toString())
+                Toast.makeText(requireContext(), "Network Error: ${error.networkResponse?.statusCode}", Toast.LENGTH_SHORT).show()
+            }
+        ) {
+
+        }
+        queue.add(stringRequest)
     }
 
     companion object {
