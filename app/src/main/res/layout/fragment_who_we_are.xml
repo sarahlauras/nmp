@@ -14,7 +14,6 @@
 
         <TextView
             android:id="@+id/txtTeamName"
-            style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="151dp"
             android:layout_height="28dp"
             android:layout_marginStart="10dp"
@@ -40,7 +39,6 @@
 
         <TextView
             android:id="@+id/txtDescription"
-            style="@style/MaterialAlertDialog.Material3.Body.Text"
             android:layout_width="371dp"
             android:layout_height="308dp"
             android:layout_marginStart="10dp"
