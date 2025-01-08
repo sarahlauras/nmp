@@ -30,6 +30,7 @@ class Teams : AppCompatActivity() {
         binding = DrawerLayoutTeamsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.Teams.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val idgame = intent.getStringExtra("idgame") ?: ""
 
@@ -83,7 +84,6 @@ class Teams : AppCompatActivity() {
         }
         queue.add(stringRequest)
     }
-
 
     private fun updateList() {
         Log.d("Teams", "Updating RecyclerView with ${teams.size} items")

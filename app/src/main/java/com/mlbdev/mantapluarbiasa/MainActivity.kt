@@ -30,10 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         var drawerToggle = ActionBarDrawerToggle(this, binding.drawerLayout, binding.Main.toolbar, R.string.app_name, R.string.app_name)
 
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         drawerToggle.isDrawerIndicatorEnabled = true
         drawerToggle.syncState()
-
-
 
         // Ambil idmember dari SharedPreferences
         val sharedPreferences = getSharedPreferences("USER_PREFERENCES", Context.MODE_PRIVATE)

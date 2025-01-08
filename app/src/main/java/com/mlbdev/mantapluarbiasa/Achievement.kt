@@ -27,6 +27,7 @@ class Achievement : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.Achievement.toolbar)
 
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val name = intent.getStringExtra("name") ?: ""
         binding.Achievement.txtGame.text = name
@@ -38,7 +39,6 @@ class Achievement : AppCompatActivity() {
                 val selectedDate = if (position == 0) "" else parent.getItemAtPosition(position).toString()
                 getAchievement(name,selectedDate)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
         }

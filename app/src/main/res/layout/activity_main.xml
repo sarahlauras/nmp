@@ -12,6 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="418dp"
         android:layout_height="69dp"
+        android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
