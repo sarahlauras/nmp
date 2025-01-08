@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mlbdev.mantapluarbiasa.databinding.MemberCardBinding
+import com.squareup.picasso.Picasso
 
 class MemberAdapter(private val members: ArrayList<MembersBank>): RecyclerView.Adapter<MemberAdapter.MemberViewHolder>() {
     class MemberViewHolder(val binding: MemberCardBinding):RecyclerView.ViewHolder(binding.root)
@@ -13,11 +14,14 @@ class MemberAdapter(private val members: ArrayList<MembersBank>): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
-        holder.binding.txtNamaMember.text = String.format("%s %s", members[position].fname, members[position].lname)
+        val member = members[position]
+        holder.binding.txtNamaMember.text = String.format("%s %s", member.fname, members[position].lname)
 
-        holder.binding.imgMember.setImageResource(members[position].img)
+        Picasso.get()
+            .load(member.img)
+            .into(holder.binding.imgMember)
 
-        holder.binding.txtRole.text = "Role : " + members[position].description
+        holder.binding.txtRole.text = "Role : " + member.description
     }
 
     override fun getItemCount(): Int {

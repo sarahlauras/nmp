@@ -35,6 +35,10 @@ class SchedulePageDetail : AppCompatActivity() {
         binding.txtTeam.text = teamName
         binding.txtDateTime.text = scheduleDate
 
+        binding.btnNotify.setOnClickListener {
+            Toast.makeText(this, "Notify Created!", Toast.LENGTH_SHORT).show()
+        }
+
         if (idevent != null && idteam != -1) {
             loadScheduleDetail(idevent, idteam)
         } else {

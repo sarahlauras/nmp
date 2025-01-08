@@ -37,7 +37,9 @@ class Achievement : AppCompatActivity() {
         binding.Achievement.spinnerYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedDate = if (position == 0) "" else parent.getItemAtPosition(position).toString()
+
                 getAchievement(name,selectedDate)
+
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
@@ -119,6 +121,7 @@ class Achievement : AppCompatActivity() {
                         val sType = object : TypeToken<List<AchievementBank>>() {}.type
 
                         achiev = Gson().fromJson(data.toString(), sType) as ArrayList<AchievementBank>
+
                         filterAchievements()
                     } else {
                         Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show()
@@ -150,7 +153,7 @@ class Achievement : AppCompatActivity() {
                 "${index + 1}. ${achievement.name} (${achievement.date}) - ${achievement.team}"
             }
             .joinToString("\n")
-
+        Log.d("format", "$formattedAchievements")
         binding.Achievement.txtAchievement.text = formattedAchievements
     }
 

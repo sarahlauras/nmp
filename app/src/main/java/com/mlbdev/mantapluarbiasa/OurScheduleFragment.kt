@@ -76,7 +76,7 @@ class OurScheduleFragment : Fragment() {
                     val sType = object : TypeToken<List<OurScheduleBank>>() {}.type
                     our_schedule = Gson().fromJson(data.toString(), sType) as ArrayList<OurScheduleBank>
                     updateList()
-                    Log.d("BERHASIL", "updatelist")
+                    Log.d("BERHASIL", "$our_schedule")
                 } else {
                     Toast.makeText(context, "No data found", Toast.LENGTH_SHORT).show()
                 }
