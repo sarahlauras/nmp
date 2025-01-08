@@ -19,7 +19,6 @@
 
     <TextView
         android:id="@+id/txtEsport"
-        style="@style/TextAppearance.Material3.TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -34,7 +33,6 @@
 
     <Button
         android:id="@+id/btnMenu"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:textColor="#000000"
@@ -48,7 +46,6 @@
 
     <Button
         android:id="@+id/btnProfile"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="70dp"
         android:layout_height="70dp"
         app:icon="@drawable/baseline_person_24"
@@ -81,7 +78,6 @@
 
     <TextView
         android:id="@+id/txtTeams"
-        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"

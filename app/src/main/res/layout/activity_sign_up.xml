@@ -9,7 +9,6 @@
 
     <TextView
         android:id="@+id/textView4"
-        style="@style/TextAppearance.Material3.TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
@@ -99,7 +98,6 @@
 
     <CheckBox
         android:id="@+id/checkBox"
-        style="@style/Widget.Material3.MaterialTimePicker.Display.HelperText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="81dp"
@@ -114,7 +112,6 @@
 
     <Button
         android:id="@+id/btnBack"
-        style="@style/ThemeOverlay.Material3.FloatingActionButton.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -127,7 +124,6 @@
 
     <Button
         android:id="@+id/btnSubmit"
-        style="@style/ThemeOverlay.Material3.FloatingActionButton.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
@@ -153,7 +149,6 @@
 
     <TextView
         android:id="@+id/textView9"
-        style="@style/TextAppearance.Material3.TitleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First Name"
@@ -162,7 +157,6 @@
 
     <TextView
         android:id="@+id/textView10"
-        style="@style/TextAppearance.Material3.TitleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -172,7 +166,6 @@
 
     <TextView
         android:id="@+id/textView11"
-        style="@style/TextAppearance.Material3.TitleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -182,7 +175,6 @@
 
     <TextView
         android:id="@+id/textView12"
-        style="@style/TextAppearance.Material3.TitleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -192,7 +184,6 @@
 
     <TextView
         android:id="@+id/textView13"
-        style="@style/TextAppearance.Material3.TitleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
