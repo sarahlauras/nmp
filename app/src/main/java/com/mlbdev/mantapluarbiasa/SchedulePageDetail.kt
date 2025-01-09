@@ -26,7 +26,7 @@ class SchedulePageDetail : AppCompatActivity() {
         val gameName = intent.getStringExtra("GAME_NAME")
         val teamName = intent.getStringExtra("TEAM_NAME")
         val scheduleDate = intent.getStringExtra("SCHEDULE_DATE")
-        val idevent = intent.getStringExtra("IDEVENT") // Ambil idevent
+        val idevent = intent.getStringExtra("IDEVENT")
         val idteam = intent.getIntExtra("IDTEAM", -1)  // Ambil idteam
 
         // Menampilkan data dasar di UI

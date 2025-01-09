@@ -70,7 +70,7 @@ class ApplyTeamActivity : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["username"] = username // Tambahkan parameter username
+                params["username"] = username
                 return params
             }
         }

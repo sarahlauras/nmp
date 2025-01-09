@@ -29,7 +29,7 @@ class Achievement : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowTitleEnabled(false) //tidak menampilkan title di toolbar
 
-        val name = intent.getStringExtra("name") ?: "" //ambil data name yang dikirimkan intent
+        val name = intent.getStringExtra("name") ?: ""
         binding.Achievement.txtGame.text = name
 
         getImgAndYearsFromServer(name)
@@ -135,7 +135,6 @@ class Achievement : AppCompatActivity() {
                 Log.e("VolleyError", error.message.toString())
                 Toast.makeText(this, "Request failed", Toast.LENGTH_SHORT).show()
             }) {
-            // Add the "gname" parameter to the POST request
             override fun getParams(): MutableMap<String, String> {
                 val params = mutableMapOf<String, String>()
                 params["name"] = name
@@ -150,7 +149,12 @@ class Achievement : AppCompatActivity() {
         val formattedAchievements = achiev
             .sortedBy { it.date }
             .mapIndexed { index, achievement ->
-                "${index + 1}. ${achievement.name} (${achievement.date}) - ${achievement.team}"
+                if (achievement.level == "global"){
+                    "${index + 1}. ${achievement.name} (${achievement.date}) - ${achievement.team} - ${achievement.level}"
+                }
+                else{
+                    "${index + 1}. ${achievement.name} (${achievement.date}) - ${achievement.team}"
+                }
             }
             .joinToString("\n")
         Log.d("format", "$formattedAchievements")
