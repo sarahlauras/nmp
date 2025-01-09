@@ -23,19 +23,19 @@ class MemberActivity : AppCompatActivity() {
         binding = ActivityMemberBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val idteam = intent.getStringExtra("idteam") ?: ""  // Perbaiki nama key yang benar
+        val idteam = intent.getStringExtra("idteam") ?: ""  //ambil idteam
         Log.d("Members", "Received idteam: $idteam")
-        val idteams = idteam.toIntOrNull() ?: 0  // Validasi konversi idteam ke Int
+        val idteams = idteam.toIntOrNull() ?: 0  // Konversi idteam ke Int
         if (idteams != 0) {
-            getMember(idteams)  // Panggil fungsi dengan idteam yang valid
+            getMember(idteams)  // Panggil fungsi dengan idteam
         } else {
             Toast.makeText(this, "Invalid Team ID", Toast.LENGTH_SHORT).show()
         }
         val imageId= intent.getStringExtra("image") ?:""
         if (imageId.isNotEmpty()) {
             Picasso.get()
-                .load(imageId)  // Memuat gambar dari URL atau path yang didapat
-                .into(binding.imgGame)  // Menampilkan gambar di ImageView
+                .load(imageId)  // Memuat gambar
+                .into(binding.imgGame)  // Menampilkan gambar
         }
 
     }
@@ -44,7 +44,7 @@ class MemberActivity : AppCompatActivity() {
         Log.d("getMember", "Fetching data for idteam: $idteam")
 
         val queue = Volley.newRequestQueue(this)
-        val url = "https://ubaya.xyz/native/160422015/teammember.php"  // Pastikan endpoint ini benar
+        val url = "https://ubaya.xyz/native/160422015/teammember.php"  
 
         val stringRequest = object : StringRequest(
             Request.Method.POST,
@@ -82,7 +82,7 @@ class MemberActivity : AppCompatActivity() {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = mutableMapOf<String, String>()
-                params["idteam"] = idteam.toString()  // Kirim idteam untuk mendapatkan data anggota
+                params["idteam"] = idteam.toString()
                 Log.d("getMember", "Request params: $params")
                 return params
             }
@@ -98,7 +98,6 @@ class MemberActivity : AppCompatActivity() {
 
         Log.d("Members", "Updating RecyclerView with ${members.size} items")
 
-        // Pastikan adapter terpasang terlebih dahulu
         val lm = LinearLayoutManager(this)
         binding.membersPage.layoutManager = lm
         binding.membersPage.setHasFixedSize(true)

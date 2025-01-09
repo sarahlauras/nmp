@@ -36,7 +36,7 @@ class ApplyTeamNewActivity : AppCompatActivity() {
         val username = sharedPreferences.getString("USERNAME", null)
         val idMember = intent.getIntExtra("ID_MEMBER", -1)  // Ambil idMember dari Intent
 
-        readGame()
+        readGame() //ke spinner
 
         binding.spinnerGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {

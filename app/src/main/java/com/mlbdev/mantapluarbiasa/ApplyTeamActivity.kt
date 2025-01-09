@@ -32,7 +32,6 @@ class ApplyTeamActivity : AppCompatActivity() {
         val username = sharedPreferences.getString("USERNAME", null)
         val idMember = sharedPreferences.getInt("ID_MEMBER", -1)  // Ambil idMember
 
-
         if (username != null) {
             readJoinProposal(username)
         } else {
