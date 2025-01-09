@@ -25,11 +25,11 @@ class Achievement : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DrawerLayoutAchievementsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.Achievement.toolbar)
+        setSupportActionBar(binding.Achievement.toolbar) //menggunakan toolbar sebagai action bar custom
 
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(false) //tidak menampilkan title di toolbar
 
-        val name = intent.getStringExtra("name") ?: ""
+        val name = intent.getStringExtra("name") ?: "" //ambil data name yang dikirimkan intent
         binding.Achievement.txtGame.text = name
 
         getImgAndYearsFromServer(name)
