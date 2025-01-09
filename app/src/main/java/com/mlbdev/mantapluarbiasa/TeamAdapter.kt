@@ -17,7 +17,7 @@ class TeamAdapter(private val teams: ArrayList<TeamBank>): RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-        holder.binding.txtTeamName.text = teams[position].nameteam
+        holder.binding.txtTeamName.text = teams[position].nameteam // menampilkan nama tim dari daftar ke textview
         holder.binding.recTeams.setOnClickListener() {
             val intent = Intent(holder.itemView.context, MemberActivity::class.java)
             intent.putExtra("idteam", teams[position].idteam.toString())

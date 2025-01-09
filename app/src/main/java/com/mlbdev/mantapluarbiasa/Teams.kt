@@ -48,6 +48,7 @@ class Teams : AppCompatActivity() {
 
     private fun getTeam(idgame: Int) {
         Log.d("getTeam", "Fetching data for idgame: $idgame")
+        
 
         val queue = Volley.newRequestQueue(this)
         val url = "https://ubaya.xyz/native/160422015/teamongames.php"

@@ -33,11 +33,11 @@ class SignIn : AppCompatActivity() {
         }
 
         binding.btnSubmit.setOnClickListener {
-            val username = binding.txtUsername.text.toString()
+            val username = binding.txtUsername.text.toString() // mengambil user + pass
             val password = binding.txtPassword.text.toString()
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
-                signIn(username, password)
+                signIn(username, password)// kalau ada user + pass langsung ke sign up
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
@@ -45,7 +45,7 @@ class SignIn : AppCompatActivity() {
 
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
-            startActivity(intent)
+            startActivity(intent) //kalau klik sign up ya langsung ke sign up activity
         }
     }
 
@@ -69,7 +69,7 @@ class SignIn : AppCompatActivity() {
                         val fname = obj.getString("fname")
                         val lname = obj.getString("lname")
 
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show() // membuat notifikasi
 
                         // Simpan idmember dan username ke SharedPreferences
                         val sharedPreferences = getSharedPreferences("USER_PREFERENCES", MODE_PRIVATE)
@@ -101,7 +101,7 @@ class SignIn : AppCompatActivity() {
                 ).show()
             }
         ) {
-            override fun getParams(): MutableMap<String, String> {
+            override fun getParams(): MutableMap<String, String> { // menyediakan param buat post, karna waktu manggil database perlu post
                 val params = HashMap<String, String>()
                 params["username"] = username
                 params["password"] = password
